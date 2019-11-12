@@ -1,6 +1,7 @@
 package com.example.breizhbudget;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -10,7 +11,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import butterknife.BindView;
+
 public class BudgetsActivity extends AppCompatActivity {
+
+    @BindView(R.id.text_home)
+    TextView home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
