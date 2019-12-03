@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class BudgetsAdapter extends RecyclerView.Adapter<BudgetsAdapter.MyViewHolder>
         implements Filterable {
@@ -26,16 +27,16 @@ public class BudgetsAdapter extends RecyclerView.Adapter<BudgetsAdapter.MyViewHo
     private BudgetsAdapterListener listener;
 
     @BindView(R.id.nom_budget)
-    private String nom;
+    public TextView nom;
     @BindView(R.id.montant_budget)
-    private String montant;
+    public TextView montant;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, montant;
 
         public MyViewHolder(View view) {
             super(view);
-
+            ButterKnife.bind(this,view);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
