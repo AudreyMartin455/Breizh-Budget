@@ -8,12 +8,17 @@
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:icon="@drawable/sigma"
+        android:title="@string/title_somme" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:id="@+id/navigation_ajoutParticipant"
+        android:icon="@drawable/account_plus"
+        android:title="@string/title_ajout_participant" />
+
+    <item
+        android:id="@+id/navigation_ajoutDepense"
+        android:icon="@drawable/currency_eur"
+        android:title="@string/title_ajout_dépense" />
 
 </menu>
