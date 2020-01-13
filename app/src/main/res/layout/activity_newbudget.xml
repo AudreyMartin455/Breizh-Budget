@@ -6,12 +6,13 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:paddingTop="?attr/actionBarSize">
-
+    
 
     <TextView
         android:id="@+id/titre"
         android:layout_width="344dp"
         android:layout_height="60dp"
+        android:gravity="center_horizontal"
         android:text="Ajout d'un budget"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,8 +20,7 @@ android:paddingTop="?attr/actionBarSize">
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:gravity="center_horizontal"/>
+        app:layout_constraintVertical_bias="0.166" />
 
     <EditText
         android:id="@+id/intitule"
@@ -28,30 +28,33 @@ android:paddingTop="?attr/actionBarSize">
         android:layout_height="60dp"
         android:layout_marginTop="56dp"
         android:hint="Intitulé du budget"
-        app:layout_constraintTop_toBottomOf="@+id/titre"
-        tools:layout_editor_absoluteX="33dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titre" />
 
     <EditText
         android:id="@+id/montant"
         android:layout_width="344dp"
         android:layout_height="60dp"
         android:hint="Montant du budget"
-        app:layout_constraintTop_toBottomOf="@+id/intitule"
-        tools:layout_editor_absoluteX="33dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/intitule" />
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/ajouter"
         android:layout_width="340dp"
         android:layout_height="100dp"
         android:layout_marginBottom="72dp"
         android:text="Ajouter mon nouveau budget"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="33dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/retour"
         android:layout_width="83dp"
         android:layout_height="40dp"
         android:text="Retour"
