@@ -3,8 +3,7 @@ package com.example.breizhbudget;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.breizhbudget.ui.budgets.BudgetsActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +19,7 @@ public class Accueil extends AppCompatActivity {
 
 
     @BindView(R.id.button3) Button buttonEvent;
+    @BindView(R.id.button) Button buttonBudget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +30,19 @@ public class Accueil extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        buttonEvent.setOnClickListener(new View.OnClickListener(){
+//Ligne pour le bouton Evenements
+   /*     buttonEvent.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View V){
-                Intent intent = new Intent(Accueil.this,EventActivity.class);
+                Intent intent = new Intent(Accueil.this, EventActivity.class);
+                startActivity(intent);
+            }
+        });*/
+
+        buttonBudget.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View V){
+                Intent intent = new Intent(Accueil.this, BudgetsActivity.class);
                 startActivity(intent);
             }
         });

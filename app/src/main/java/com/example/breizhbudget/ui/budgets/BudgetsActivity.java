@@ -1,8 +1,10 @@
 package com.example.breizhbudget.ui.budgets;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.breizhbudget.Accueil;
 import com.example.breizhbudget.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -20,8 +22,6 @@ import butterknife.BindView;
 
 public class BudgetsActivity extends AppCompatActivity {
 
-    @BindView(R.id.text_home)
-    TextView home;
     @BindView(R.id.recycler_budgets)
     RecyclerView recycler_budgets;
     private RecyclerView.Adapter budgetAdapter;
@@ -32,15 +32,6 @@ public class BudgetsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budgets);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_ajoutParticipant)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
 
 
         // create the data
@@ -54,6 +45,11 @@ public class BudgetsActivity extends AppCompatActivity {
         recycler_budgets.setLayoutManager(budgetLayoutManager);
         recycler_budgets.setAdapter(budgetAdapter);*/
 
+    }
+
+    public void viewAddBudget(){
+        Intent intent = new Intent(BudgetsActivity.this, BudgetsActivity.class);
+        startActivity(intent);
     }
 
 }
