@@ -37,7 +37,7 @@ android:paddingTop="?attr/actionBarSize">
         android:id="@+id/titre"
         android:layout_width="344dp"
         android:layout_height="60dp"
-        android:text="Ajout d'un évènement"
+        android:text="Ajout d'un budget"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,8 +70,17 @@ android:paddingTop="?attr/actionBarSize">
         android:layout_width="340dp"
         android:layout_height="100dp"
         android:layout_marginBottom="72dp"
-        android:text="Valider mon nouveau budget"
+        android:text="Ajouter mon nouveau budget"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="33dp" />
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="83dp"
+        android:layout_height="40dp"
+        android:text="Retour"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nav_host_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
