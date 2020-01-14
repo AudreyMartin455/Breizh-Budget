@@ -1,14 +1,12 @@
 package com.example.breizhbudget.ui.budgets;
 
 public class ModelBudgets {
-    private String id;
     private String name;
     private long montant;
 
     public ModelBudgets(){}
 
-    public ModelBudgets(String id, String name, long montant) {
-        this.id = id;
+    public ModelBudgets( String name, long montant) {
         this.name = name;
         this.montant = montant;
     }

@@ -24,10 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class BudgetsActivity extends AppCompatActivity {
 
-    //@BindView(R.id.recycler_budgets)
+    @BindView(R.id.recycler_budgets)
     RecyclerView recycler_budgets;
 
     private BudgetsAdapter budgetAdapter;
@@ -36,17 +37,18 @@ public class BudgetsActivity extends AppCompatActivity {
     private List<ModelBudgets> budgetsList = new ArrayList<>();
 
     // firestore instance
-    FirebaseFirestore  db;
-    ProgressDialog progressDialog;
+    private FirebaseFirestore  db;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budgets);
+        ButterKnife.bind(this);
 
-        // init firestore
         db = FirebaseFirestore.getInstance();
-        recycler_budgets = findViewById(R.id.recycler_budgets);
+
+        //recycler_budgets = findViewById(R.id.recycler_budgets);
         recycler_budgets.setHasFixedSize(true);
         budgetLayoutManager = new LinearLayoutManager(this);
         recycler_budgets.setLayoutManager(budgetLayoutManager);
@@ -65,7 +67,7 @@ public class BudgetsActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     progressDialog.dismiss();
                     for( DocumentSnapshot doc:task.getResult()){
-                        ModelBudgets modelBudgets =new ModelBudgets(doc.getId(), doc.getString("name"), doc.getLong("montant"));
+                        ModelBudgets modelBudgets =new ModelBudgets(doc.getString("name"), doc.getLong("montant"));
                         budgetsList.add(modelBudgets);
                     }
 
@@ -84,7 +86,7 @@ public class BudgetsActivity extends AppCompatActivity {
     }
 
     public void viewAddBudget(){
-        Intent intent = new Intent(BudgetsActivity.this, BudgetsActivity.class);
+        Intent intent = new Intent(BudgetsActivity.this, AddBudgetActivity.class);
         startActivity(intent);
     }
 
