@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.breizhbudget.Repository;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -36,9 +37,7 @@ public class BudgetsActivity extends AppCompatActivity {
 
     private List<ModelBudgets> budgetsList = new ArrayList<>();
 
-    // firestore instance
-    private FirebaseFirestore  db;
-    private ProgressDialog progressDialog;
+    private Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,43 +45,24 @@ public class BudgetsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_budgets);
         ButterKnife.bind(this);
 
-        db = FirebaseFirestore.getInstance();
+        this.repository = Repository.getInstance();
 
         //recycler_budgets = findViewById(R.id.recycler_budgets);
         recycler_budgets.setHasFixedSize(true);
         budgetLayoutManager = new LinearLayoutManager(this);
         recycler_budgets.setLayoutManager(budgetLayoutManager);
 
-        progressDialog = new ProgressDialog(this);
-        this.showAllBudgets();
 
-    }
+        budgetsList = repository.getAllBudget(budgetsList,this);
 
-    public void showAllBudgets(){
-        progressDialog.setTitle("loading data ....");
-        progressDialog.show();
 
-        db.collection("Budgets")
-                .get()
-                .addOnCompleteListener(task -> {
-                    progressDialog.dismiss();
-                    for( DocumentSnapshot doc:task.getResult()){
-                        ModelBudgets modelBudgets =new ModelBudgets(doc.getString("name"), doc.getLong("montant"));
-                        budgetsList.add(modelBudgets);
-                    }
+        for (int i = 0 ; i < budgetsList.size() ; i++){
+            Log.d("value is" , budgetsList.get(i).toString());
+            budgetAdapter = new BudgetsAdapter(BudgetsActivity.this, budgetsList);
+            recycler_budgets.setAdapter(budgetAdapter);
+        }
 
-                    for (int i = 0 ; i < budgetsList.size() ; i++)
-                        Log.d("value is" , budgetsList.get(i).toString());
-                    budgetAdapter = new BudgetsAdapter(BudgetsActivity.this, budgetsList);
-                    recycler_budgets.setAdapter(budgetAdapter);
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressDialog.dismiss();
-                Toast.makeText(BudgetsActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
 
-            }
-        });
     }
 
     public void viewAddBudget(){
