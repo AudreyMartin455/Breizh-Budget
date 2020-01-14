@@ -1,25 +1,16 @@
 package com.example.breizhbudget.ui.budgets;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.breizhbudget.R;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.breizhbudget.Repository;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +25,7 @@ public class BudgetsActivity extends AppCompatActivity {
 
     private BudgetsAdapter budgetAdapter;
     private RecyclerView.LayoutManager budgetLayoutManager;
-
     private List<ModelBudgets> budgetsList = new ArrayList<>();
-
     private Repository repository;
 
     @Override
@@ -47,7 +36,6 @@ public class BudgetsActivity extends AppCompatActivity {
 
         this.repository = Repository.getInstance();
 
-        //recycler_budgets = findViewById(R.id.recycler_budgets);
         recycler_budgets.setHasFixedSize(true);
         budgetLayoutManager = new LinearLayoutManager(this);
         recycler_budgets.setLayoutManager(budgetLayoutManager);
@@ -55,6 +43,8 @@ public class BudgetsActivity extends AppCompatActivity {
 
         budgetsList = repository.getAllBudget(budgetsList,this);
 
+        //Test - à supprimer
+        budgetsList.add(new ModelBudgets("Budget7444",45664));
 
         for (int i = 0 ; i < budgetsList.size() ; i++){
             Log.d("value is" , budgetsList.get(i).toString());
