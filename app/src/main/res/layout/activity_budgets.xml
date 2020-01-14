@@ -11,6 +11,7 @@
         android:id="@+id/recycler_budgets"
         android:layout_width="56dp"
         android:layout_height="195dp"
+        tools:listitem="@layout/item_budget"
         app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,10 +1,14 @@
 package com.example.breizhbudget.ui.budgets;
 
 public class ModelBudgets {
+    private String id;
     private String name;
-    private int montant;
+    private long montant;
 
-    public ModelBudgets(String name, int montant) {
+    public ModelBudgets(){}
+
+    public ModelBudgets(String id, String name, long montant) {
+        this.id = id;
         this.name = name;
         this.montant = montant;
     }
@@ -13,7 +17,7 @@ public class ModelBudgets {
         return name;
     }
 
-    public int getMontant() {
+    public long getMontant() {
         return montant;
     }
 
@@ -21,7 +25,7 @@ public class ModelBudgets {
         this.name = name;
     }
 
-    public void setMontant(int montant) {
+    public void setMontant(long montant) {
         this.montant = montant;
     }
 }
