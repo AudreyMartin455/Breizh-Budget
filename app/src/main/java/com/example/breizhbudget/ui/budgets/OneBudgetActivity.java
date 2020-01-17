@@ -17,20 +17,19 @@ public class OneBudgetActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO CHANGER LE LAYOUT
-        //setContentView(R.layout.activity_budgets);
+        setContentView(R.layout.activity_budget);
         ButterKnife.bind(this);
 
         this.repository = Repository.getInstance();
 
     }
 
-    public void showAddRowManually(){
+   /* public void showAddRowManually(){
         Intent intent = new Intent(OneBudgetActivity.this, AddRowActivity.class);
         startActivity(intent);
     }
 
     public void addRowScan(){
 
-    }
+    }*/
 }

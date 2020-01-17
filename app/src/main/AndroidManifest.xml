@@ -25,6 +25,12 @@
         <activity
             android:name=".ui.budgets.AddBudgetActivity"
             android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.budgets.OneBudgetActivity"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.budgets.AddRowActivity"
+            android:label="@string/app_name"></activity>
     </application>
 
 </manifest>

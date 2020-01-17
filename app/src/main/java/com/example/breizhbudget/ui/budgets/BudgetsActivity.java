@@ -21,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class BudgetsActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class BudgetsActivity extends AppCompatActivity {
         }
     }
 
-
+    @OnClick(R.id.addBudget)
     public void viewAddBudget(){
         Intent intent = new Intent(BudgetsActivity.this, AddBudgetActivity.class);
         startActivity(intent);
