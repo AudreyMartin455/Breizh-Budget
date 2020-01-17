@@ -64,6 +64,14 @@
                 android:text="Voir mon budget"
                 app:layout_constraintEnd_toStartOf="@+id/button4"
                 tools:layout_editor_absoluteY="555dp" />
+            <Button
+                android:id="@+id/delete_budget1"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:text="X"
+                app:layout_constraintEnd_toStartOf="@+id/button4"
+                tools:layout_editor_absoluteY="555dp" />
 
         </TableRow>
 
@@ -101,6 +109,15 @@
                 app:layout_constraintEnd_toStartOf="@+id/button4"
                 tools:layout_editor_absoluteY="555dp" />
 
+            <Button
+                android:id="@+id/delete_budget2"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:text="X"
+                app:layout_constraintEnd_toStartOf="@+id/button4"
+                tools:layout_editor_absoluteY="555dp" />
+
         </TableRow>
 
         <TableRow
@@ -131,9 +148,18 @@
 
             <Button
                 android:id="@+id/voir_budget3"
-                android:layout_width="57dp"
+                android:layout_width="75dp"
                 android:layout_height="match_parent"
                 android:text="Voir mon budget"
+                app:layout_constraintEnd_toStartOf="@+id/button4"
+                tools:layout_editor_absoluteY="555dp" />
+
+            <Button
+                android:id="@+id/delete_budget4"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:text="X"
                 app:layout_constraintEnd_toStartOf="@+id/button4"
                 tools:layout_editor_absoluteY="555dp" />
 
@@ -161,6 +187,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idTable"
         app:layout_constraintVertical_bias="0.503" />
+
 
     <Button
         android:id="@+id/button"
