@@ -33,7 +33,7 @@ public class EventAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //inflate layout
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_event2, parent , false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_event, parent , false);
         //handle item clicks here
 
         ViewHolder viewHolder = new ViewHolder(itemView);

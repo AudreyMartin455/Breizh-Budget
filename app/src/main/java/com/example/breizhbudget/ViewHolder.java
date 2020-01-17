@@ -10,6 +10,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     TextView mTitleEvent;
     View mView;
+
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
         mView = itemView;
