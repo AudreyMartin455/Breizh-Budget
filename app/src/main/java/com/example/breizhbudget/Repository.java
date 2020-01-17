@@ -31,6 +31,7 @@ public class Repository {
 
     private static Repository repository;
     private FirebaseFirestore db;
+    private final String TAG = ">>>>>";
 
     private Repository(){
         this.db = FirebaseFirestore.getInstance();
@@ -72,12 +73,10 @@ public class Repository {
 
 
                         for (DocumentSnapshot doc : task.getResult()) {
-                            ModelBudgets modelBudgets = new ModelBudgets(doc.getString("name"), doc.getLong("montant"));
+                            ModelBudgets modelBudgets = new ModelBudgets(doc.getId(),doc.getString("name"), doc.getLong("montant"));
                             budgetsList.add(modelBudgets);
 
                         }
-
-
 
                         BudgetsActivity ba = (BudgetsActivity) context;
                         ba.updateBudgetsUI(budgetsList);
@@ -113,6 +112,26 @@ public class Repository {
                         Log.w("Failure : ", "Error writing document", e);
                     }
                 });
+    }
+
+    public void deleteBudget(ModelBudgets budget, Context context){
+        db.collection("Budgets").document(budget.getId())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context,"Budget deleted",Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context,"Error, Budget not deleted",Toast.LENGTH_SHORT).show();
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+
     }
 
     /**************
