@@ -25,7 +25,6 @@ public class BudgetsActivity extends AppCompatActivity {
 
     private BudgetsAdapter budgetAdapter;
     private RecyclerView.LayoutManager budgetLayoutManager;
-    private List<ModelBudgets> budgetsList = new ArrayList<>();
     private Repository repository;
 
     @Override
@@ -41,19 +40,18 @@ public class BudgetsActivity extends AppCompatActivity {
         recycler_budgets.setLayoutManager(budgetLayoutManager);
 
 
-        budgetsList = repository.getAllBudget(budgetsList,this);
-
-        //Test - à supprimer
-        budgetsList.add(new ModelBudgets("Budget7444",45664));
-
-        for (int i = 0 ; i < budgetsList.size() ; i++){
-            Log.d("value is" , budgetsList.get(i).toString());
-            budgetAdapter = new BudgetsAdapter(BudgetsActivity.this, budgetsList);
-            recycler_budgets.setAdapter(budgetAdapter);
-        }
+        repository.getAllBudget(this);
 
 
     }
+
+    public void updateBudgetsUI(List<ModelBudgets> budgetsList){
+        for (int i = 0 ; i < budgetsList.size() ; i++){
+            budgetAdapter = new BudgetsAdapter(BudgetsActivity.this, budgetsList);
+            recycler_budgets.setAdapter(budgetAdapter);
+        }
+    }
+
 
     public void viewAddBudget(){
         Intent intent = new Intent(BudgetsActivity.this, AddBudgetActivity.class);

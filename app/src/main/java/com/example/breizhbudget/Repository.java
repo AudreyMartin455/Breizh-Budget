@@ -7,6 +7,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import com.example.breizhbudget.ui.budgets.BudgetsActivity;
 import com.example.breizhbudget.ui.budgets.ModelBudgets;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -51,11 +53,11 @@ public class Repository {
 
     /**
      * Retourne tous les budgets
-     * @param budgetsList liste vide de budgets
      * @param context
      * @return liste des budgets trouvés dans la DB
      */
-    public List<ModelBudgets> getAllBudget(List<ModelBudgets> budgetsList, Context context){
+    public List<ModelBudgets> getAllBudget(Context context){
+        List<ModelBudgets> budgetsList = new ArrayList<>();
         ProgressDialog progressDialog = new ProgressDialog(context);;
 
         progressDialog.setTitle("loading data ....");
@@ -75,6 +77,10 @@ public class Repository {
 
                         }
 
+
+
+                        BudgetsActivity ba = (BudgetsActivity) context;
+                        ba.updateBudgetsUI(budgetsList);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
