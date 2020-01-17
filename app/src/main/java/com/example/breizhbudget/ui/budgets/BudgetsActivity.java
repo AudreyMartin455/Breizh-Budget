@@ -1,8 +1,12 @@
 package com.example.breizhbudget.ui.budgets;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.breizhbudget.R;
 
@@ -55,6 +59,26 @@ public class BudgetsActivity extends AppCompatActivity {
 
     public void viewAddBudget(){
         Intent intent = new Intent(BudgetsActivity.this, AddBudgetActivity.class);
+        startActivity(intent);
+    }
+
+    //TODO A TESTER
+    public void deleteBudget(ModelBudgets budget){
+        Context context  = this;
+        new AlertDialog.Builder(this)
+                .setTitle("Supprimer un budget")
+                .setMessage("Voulez-vous vraiment supprimer ce budget ?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        repository.deleteBudget(budget, context);
+                    }})
+                .setNegativeButton("Non", null).show();
+    }
+
+    public void show1Budget(ModelBudgets budget){
+        Intent intent = new Intent(BudgetsActivity.this, OneBudgetActivity.class);
         startActivity(intent);
     }
 
