@@ -18,12 +18,12 @@ public class BudgetsAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
 
-    BudgetsActivity listActivity;
+    BudgetsActivity activity;
     List<ModelBudgets> modelBudgetsList;
 
 
-    public BudgetsAdapter(BudgetsActivity listActivity, List<ModelBudgets> modelBudgetsList) {
-        this.listActivity = listActivity;
+    public BudgetsAdapter(BudgetsActivity activity, List<ModelBudgets> modelBudgetsList) {
+        this.activity = activity;
         this.modelBudgetsList = modelBudgetsList;
 
     }
@@ -42,9 +42,8 @@ public class BudgetsAdapter extends RecyclerView.Adapter<ViewHolder> {
             @Override
             public void onItemclick(View view, int position) {
                 //this will be called when user click item
-                String title = modelBudgetsList.get(position).getName();
-                long montant = modelBudgetsList.get(position).getMontant();
-                Toast.makeText(listActivity,title+"\n"+montant,Toast.LENGTH_SHORT).show();
+                ModelBudgets budget = modelBudgetsList.get(position);
+                activity.show1Budget(budget);
             }
         });
 
