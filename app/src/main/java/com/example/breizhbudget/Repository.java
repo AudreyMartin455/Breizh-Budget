@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 
 import com.example.breizhbudget.ui.budgets.BudgetsActivity;
 import com.example.breizhbudget.ui.budgets.ModelBudgets;
+import com.example.breizhbudget.ui.budgets.ModelTransaction;
+import com.example.breizhbudget.ui.budgets.OneBudgetActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -134,7 +136,12 @@ public class Repository {
         this.getAllBudget(context);
     }
 
-    public void getAllDebitCredit(Context context){
+    public void getAllTransaction(Context context, String idBudget){
+        List<ModelTransaction> transList = new ArrayList<>();
+        transList.add(new ModelTransaction("4evvvre","Loyer",false,451));
+
+        OneBudgetActivity ba = (OneBudgetActivity) context;
+        ba.updateTransactionUI(transList);
 
     }
 

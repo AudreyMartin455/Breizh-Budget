@@ -46,11 +46,11 @@ public class OneBudgetActivity extends AppCompatActivity {
         budgetLayoutManager = new LinearLayoutManager(this);
         recycler_row.setLayoutManager(budgetLayoutManager);
 
-        this.repository.getAllDebitCredit(this);
+        this.repository.getAllTransaction(this,budget.getId());
 
     }
 
-    public void updateBudgetsUI(List<ModelTransaction> transList){
+    public void updateTransactionUI(List<ModelTransaction> transList){
         for (int i = 0 ; i < transList.size() ; i++){
             transactionAdapter = new TransactionAdapter(OneBudgetActivity.this, transList);
             recycler_row.setAdapter(transactionAdapter);

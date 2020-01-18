@@ -9,9 +9,81 @@
 
 
     <TextView
-        android:id="@+id/titre"
-        android:layout_width="344dp"
+
+        android:id="@+id/total_budget"
+        android:layout_width="92dp"
         android:layout_height="60dp"
+        android:padding="18dip"
+        android:text="-500$"
+        android:textColor="#000"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/addRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.785"
+        app:layout_constraintStart_toEndOf="@+id/total"
+        app:layout_constraintTop_toBottomOf="@+id/valeur_budget"
+        app:layout_constraintVertical_bias="0.946" />
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="163dp"
+        android:layout_height="wrap_content"
+        android:padding="18dip"
+        android:text="TOTAL DU MOIS"
+        android:textColor="#000"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_transaction"
+        app:layout_constraintVertical_bias="0.411" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_transaction"
+        android:layout_width="375dp"
+        android:layout_height="334dp"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titre"
+        tools:listitem="@layout/item_transaction" />
+
+    <TextView
+
+        android:id="@+id/valeur_budget"
+        android:layout_width="101dp"
+        android:layout_height="53dp"
+        android:padding="18dip"
+        android:text="500$"
+        android:textColor="#000"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/titre_budget"
+        app:layout_constraintEnd_toEndOf="@+id/total_budget"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@+id/total_budget"
+        app:layout_constraintTop_toBottomOf="@+id/titre"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/titre_budget"
+        android:layout_width="168dp"
+        android:layout_height="42dp"
+        android:padding="5dip"
+        android:text="Début du mois"
+        android:textColor="#000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/total"
+        app:layout_constraintEnd_toEndOf="@+id/total"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/total"
+        app:layout_constraintTop_toBottomOf="@+id/titre"
+        app:layout_constraintVertical_bias="0.056" />
+
+    <TextView
+        android:id="@+id/titre"
+        android:layout_width="334dp"
+        android:layout_height="45dp"
         android:gravity="center"
         android:text="Budget titre"
         android:textSize="25dp"
@@ -22,97 +94,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TableRow
-        android:id="@+id/tableRow"
-        android:layout_width="398dp"
-        android:layout_height="57dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titre"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/titre_budget"
-            android:layout_width="246dp"
-            android:layout_height="match_parent"
-            android:padding="18dip"
-            android:text="Début du mois"
-            android:textColor="#000"
-            android:textSize="20dp" />
-
-        <TextView
-
-            android:id="@+id/valeur_budget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="52dp"
-            android:padding="18dip"
-            android:text="500$"
-            android:textColor="#000"
-            android:textSize="20dp" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="378dp"
-        android:layout_height="353dp"
-        app:layout_constraintBottom_toTopOf="@+id/idTotal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableRow">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_transaction"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/item_transaction" />
-    </TableRow>
-
-    <TableLayout
-        android:id="@+id/idTotal"
-        android:layout_width="398dp"
-        android:layout_height="85dp"
-        android:stretchColumns="*"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableRow"
-        app:layout_constraintVertical_bias="0.753">
-
-        <TableRow
-
-            android:id="@+id/RowTotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <!-- first element of the row-->
-
-            <TextView
-                android:id="@+id/total"
-                android:layout_width="163dp"
-                android:layout_height="wrap_content"
-                android:padding="18dip"
-                android:text="TOTAL DU MOIS"
-                android:textColor="#000"
-                android:textSize="12dp" />
-
-            <TextView
-
-                android:id="@+id/total_budget"
-                android:layout_width="125dp"
-                android:layout_height="match_parent"
-                android:padding="18dip"
-                android:text="-500$"
-                android:textColor="#000"
-                android:textSize="14dp" />
-
-
-        </TableRow>
-
-    </TableLayout>
-
     <Button
         android:id="@+id/button1"
         android:layout_width="100dp"
@@ -120,32 +101,33 @@
         android:text="Scanner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idTotal"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/titre"
+        app:layout_constraintVertical_bias="0.971" />
 
     <Button
         android:id="@+id/addRow"
         android:layout_width="100dp"
         android:layout_height="75dp"
         android:text="Ajouter un débit/crédit"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/button1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/idTotal"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.757"
+        app:layout_constraintStart_toEndOf="@+id/button1"
+        app:layout_constraintTop_toBottomOf="@+id/titre"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="100dp"
         android:layout_height="75dp"
         android:text="Modifier le budget"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addRow"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/idTotal"
-        app:layout_constraintVertical_bias="0.0" />
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/button1"
+        app:layout_constraintEnd_toStartOf="@+id/button1"
+        app:layout_constraintHorizontal_bias="0.355"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,7 @@ import com.example.breizhbudget.R;
 
 import java.util.List;
 
-public class TransactionAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class TransactionAdapter extends RecyclerView.Adapter<ViewHolderTransaction> {
 
 
 
@@ -32,12 +32,12 @@ public class TransactionAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolderTransaction onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //inflate layout
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_transaction, parent , false);
         //handle item clicks here
 
-        ViewHolder viewHolder = new ViewHolder(itemView);
+        ViewHolderTransaction viewHolder = new ViewHolderTransaction(itemView);
         viewHolder.onClickListener(new ViewHolder.ClickListener() {
             @Override
             public void onItemclick(View view, int position) {
@@ -53,13 +53,16 @@ public class TransactionAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderTransaction holder, int position) {
 
         //bind view setdata
-       // holder.nameBudget.setText(transList.get(position).getName());
-       // holder.montantBudget.setText(transList.get(position).getMontant()+"");
-
-
+        holder.description.setText(transList.get(position).getDescription());
+        holder.montant_trans.setText(transList.get(position).getMontantTransaction()+" €");
+        if(transList.get(position).isSign()){
+            holder.sign.setText(" + ");
+        }else{
+            holder.sign.setText(" - ");
+        }
     }
 
     @Override
