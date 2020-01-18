@@ -83,6 +83,7 @@ public class BudgetsActivity extends AppCompatActivity {
 
     public void show1Budget(ModelBudgets budget){
         Intent intent = new Intent(BudgetsActivity.this, OneBudgetActivity.class);
+        intent.putExtra("BUDGET",budget);
         startActivity(intent);
     }
 

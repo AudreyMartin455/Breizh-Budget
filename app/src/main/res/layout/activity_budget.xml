@@ -20,160 +20,66 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.113" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TableLayout
-        android:id="@+id/idTable"
-        android:layout_width="406dp"
-        android:layout_height="250dp"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:stretchColumns="*"
+    <TableRow
+        android:id="@+id/tableRow"
+        android:layout_width="398dp"
+        android:layout_height="57dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titre">
+        app:layout_constraintTop_toBottomOf="@+id/titre"
+        app:layout_constraintVertical_bias="0.0">
 
-        <TableRow
+        <TextView
+            android:id="@+id/titre_budget"
+            android:layout_width="246dp"
+            android:layout_height="match_parent"
+            android:padding="18dip"
+            android:text="Début du mois"
+            android:textColor="#000"
+            android:textSize="20dp" />
 
-            android:id="@+id/Row0"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+        <TextView
 
-            <!-- first element of the row-->
-            <TextView
-                android:id="@+id/titre_budget"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:padding="18dip"
-                android:text="Début du mois"
-                android:textColor="#000"
-                android:textSize="20dp" />
+            android:id="@+id/valeur_budget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="52dp"
+            android:padding="18dip"
+            android:text="500$"
+            android:textColor="#000"
+            android:textSize="20dp" />
 
-            <TextView
+    </TableRow>
 
-                android:id="@+id/valeur_budget"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="18dip"
-                android:text="500$"
-                android:textColor="#000"
-                android:textSize="20dp" />
+    <TableRow
+        android:layout_width="378dp"
+        android:layout_height="353dp"
+        app:layout_constraintBottom_toTopOf="@+id/idTotal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow">
 
-
-        </TableRow>
-
-
-        <TableRow
-
-            android:id="@+id/Row1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <!-- first element of the row-->
-            <TextView
-                android:id="@+id/titre_budget1"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:padding="18dip"
-                android:text="Loyer"
-                android:textColor="#000"
-                android:textSize="12dp" />
-
-            <TextView
-
-                android:id="@+id/valeur_budget1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="18dip"
-                android:text="-500$"
-                android:textColor="#000"
-                android:textSize="14dp" />
-
-            <Button
-                android:id="@+id/delete_budget1"
-                android:layout_width="5dp"
-                android:layout_height="wrap_content"
-                android:text="X"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/nav_host_fragment" />
-
-
-        </TableRow>
-
-        <TableRow
-
-            android:id="@+id/Row2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <!-- first element of the row-->
-            <TextView
-                android:id="@+id/titre_budget2"
-                android:padding="18dip"
-                android:text="Assurance"
-                android:textColor="#000"
-                android:textSize="12dp" />
-
-            <TextView
-
-                android:id="@+id/valeur_budget2"
-                android:padding="18dip"
-                android:text="-200$"
-                android:textColor="#000"
-                android:textSize="14dp" />
-            <Button
-                android:id="@+id/delete_budget2"
-                android:layout_width="5dp"
-                android:layout_height="wrap_content"
-                android:text="X"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/nav_host_fragment" />
-
-
-        </TableRow>
-
-        <TableRow
-
-            android:id="@+id/Row3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/titre_budget3"
-                android:padding="18dip"
-                android:text="Remboursement banque"
-                android:textColor="#000"
-                android:textSize="12dp" />
-
-            <TextView
-
-                android:id="@+id/valeur_budget3"
-                android:padding="18dip"
-                android:text="100$"
-                android:textColor="#000"
-                android:textSize="14dp" />
-
-            <Button
-                android:id="@+id/delete_budget3"
-                android:layout_width="5dp"
-                android:layout_height="wrap_content"
-                android:text="X"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/nav_host_fragment" />
-
-
-
-        </TableRow>
-    </TableLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_debitcredit" />
+    </TableRow>
 
     <TableLayout
         android:id="@+id/idTotal"
-        android:layout_width="352dp"
-        android:layout_height="54dp"
+        android:layout_width="398dp"
+        android:layout_height="85dp"
         android:stretchColumns="*"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idTable">
+        app:layout_constraintTop_toBottomOf="@+id/tableRow"
+        app:layout_constraintVertical_bias="0.753">
 
         <TableRow
 
@@ -182,8 +88,9 @@
             android:layout_height="wrap_content">
 
             <!-- first element of the row-->
+
             <TextView
-                android:id="@+id/Total"
+                android:id="@+id/total"
                 android:layout_width="163dp"
                 android:layout_height="wrap_content"
                 android:padding="18dip"
@@ -193,7 +100,7 @@
 
             <TextView
 
-                android:id="@+id/Total_budget"
+                android:id="@+id/total_budget"
                 android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:padding="18dip"
@@ -213,10 +120,10 @@
         android:text="Scanner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idTotal"
-        app:layout_constraintVertical_bias="0.895" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/addRow"
@@ -227,7 +134,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/idTotal"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button2"
@@ -239,14 +146,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/button1"
         app:layout_constraintTop_toBottomOf="@+id/idTotal"
-        app:layout_constraintVertical_bias="0.895" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="83dp"
-        android:layout_height="40dp"
-        android:text="Retour"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/nav_host_fragment" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

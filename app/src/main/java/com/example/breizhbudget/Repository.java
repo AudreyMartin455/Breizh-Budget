@@ -134,6 +134,10 @@ public class Repository {
         this.getAllBudget(context);
     }
 
+    public void getAllDebitCredit(Context context){
+
+    }
+
     /**************
      *
      *
