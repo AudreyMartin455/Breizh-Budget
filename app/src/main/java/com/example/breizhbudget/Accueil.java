@@ -3,7 +3,6 @@ package com.example.breizhbudget;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.breizhbudget.ui.budgets.AddBudgetActivity;
 import com.example.breizhbudget.ui.budgets.BudgetsActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +18,7 @@ import butterknife.ButterKnife;
 public class Accueil extends AppCompatActivity {
 
 
-    @BindView(R.id.button3) Button buttonEvent;
+    @BindView(R.id.addRow) Button buttonEvent;
     @BindView(R.id.button) Button buttonBudget;
 
     @Override

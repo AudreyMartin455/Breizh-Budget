@@ -131,7 +131,7 @@ public class Repository {
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
-
+        this.getAllBudget(context);
     }
 
     /**************

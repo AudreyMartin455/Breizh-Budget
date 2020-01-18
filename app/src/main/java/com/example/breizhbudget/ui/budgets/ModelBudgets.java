@@ -7,6 +7,10 @@ public class ModelBudgets {
 
     public ModelBudgets(){}
 
+    public ModelBudgets(String id){
+        this.id = id;
+    }
+
     public ModelBudgets(String name, long montant){
         this.name = name;
         this.montant = montant;

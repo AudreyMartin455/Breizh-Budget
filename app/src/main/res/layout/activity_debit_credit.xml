@@ -216,7 +216,7 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/buttonAjout"
+        android:id="@+id/confirmRow"
         android:layout_width="250dp"
         android:layout_height="80dp"
         android:layout_marginTop="64dp"

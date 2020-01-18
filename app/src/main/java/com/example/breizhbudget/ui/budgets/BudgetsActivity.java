@@ -22,6 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Optional;
 
 public class BudgetsActivity extends AppCompatActivity {
 
@@ -44,7 +45,6 @@ public class BudgetsActivity extends AppCompatActivity {
         budgetLayoutManager = new LinearLayoutManager(this);
         recycler_budgets.setLayoutManager(budgetLayoutManager);
 
-
         repository.getAllBudget(this);
 
 
@@ -63,8 +63,9 @@ public class BudgetsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //TODO A TESTER
-    public void deleteBudget(ModelBudgets budget){
+
+    public void deleteBudget(){
+        ModelBudgets budget = new ModelBudgets("pemQoY7DOw4q7OKl61qo");
         Context context  = this;
         new AlertDialog.Builder(this)
                 .setTitle("Supprimer un budget")
@@ -76,6 +77,8 @@ public class BudgetsActivity extends AppCompatActivity {
                         repository.deleteBudget(budget, context);
                     }})
                 .setNegativeButton("Non", null).show();
+
+
     }
 
     public void show1Budget(ModelBudgets budget){

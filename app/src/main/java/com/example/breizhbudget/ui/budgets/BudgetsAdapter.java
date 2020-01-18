@@ -58,6 +58,7 @@ public class BudgetsAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.nameBudget.setText(modelBudgetsList.get(position).getName());
         holder.montantBudget.setText(modelBudgetsList.get(position).getMontant()+"");
 
+        
     }
 
     @Override

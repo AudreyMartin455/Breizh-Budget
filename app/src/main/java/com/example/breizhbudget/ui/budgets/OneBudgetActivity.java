@@ -10,6 +10,7 @@ import com.example.breizhbudget.R;
 import com.example.breizhbudget.Repository;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class OneBudgetActivity extends AppCompatActivity {
 
@@ -24,12 +25,13 @@ public class OneBudgetActivity extends AppCompatActivity {
 
     }
 
-   /* public void showAddRowManually(){
+    @OnClick(R.id.addRow)
+    public void showAddRowManually(){
         Intent intent = new Intent(OneBudgetActivity.this, AddRowActivity.class);
         startActivity(intent);
     }
 
     public void addRowScan(){
 
-    }*/
+    }
 }
