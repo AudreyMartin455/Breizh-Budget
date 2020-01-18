@@ -63,10 +63,10 @@
         app:layout_constraintTop_toBottomOf="@+id/tableRow">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_row"
+            android:id="@+id/recycler_transaction"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_debitcredit" />
+            tools:listitem="@layout/item_transaction" />
     </TableRow>
 
     <TableLayout

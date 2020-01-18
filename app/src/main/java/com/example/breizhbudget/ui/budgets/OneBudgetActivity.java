@@ -6,9 +6,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.breizhbudget.R;
 import com.example.breizhbudget.Repository;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,7 +23,11 @@ public class OneBudgetActivity extends AppCompatActivity {
     TextView viewMontant;
     @BindView(R.id.titre)
     TextView viewTitle;
+    @BindView(R.id.recycler_transaction)
+    RecyclerView recycler_row;
 
+    private TransactionAdapter transactionAdapter;
+    private RecyclerView.LayoutManager budgetLayoutManager;
     private Repository repository;
     private ModelBudgets budget;
 
@@ -35,8 +42,19 @@ public class OneBudgetActivity extends AppCompatActivity {
         this.viewMontant.setText(budget.getMontant() + " €");
         this.viewTitle.setText(budget.getName());
 
+        recycler_row.setHasFixedSize(true);
+        budgetLayoutManager = new LinearLayoutManager(this);
+        recycler_row.setLayoutManager(budgetLayoutManager);
+
         this.repository.getAllDebitCredit(this);
 
+    }
+
+    public void updateBudgetsUI(List<ModelTransaction> transList){
+        for (int i = 0 ; i < transList.size() ; i++){
+            transactionAdapter = new TransactionAdapter(OneBudgetActivity.this, transList);
+            recycler_row.setAdapter(transactionAdapter);
+        }
     }
 
     @OnClick(R.id.addRow)

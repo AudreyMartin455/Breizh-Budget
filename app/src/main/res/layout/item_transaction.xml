@@ -17,7 +17,7 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/montantDebitCredit"
+        android:id="@+id/montant_trans"
         android:layout_width="97dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
