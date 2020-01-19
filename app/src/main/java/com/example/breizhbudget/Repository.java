@@ -61,7 +61,7 @@ public class Repository {
      */
     public List<ModelBudgets> getAllBudget(Context context){
         List<ModelBudgets> budgetsList = new ArrayList<>();
-        ProgressDialog progressDialog = new ProgressDialog(context);;
+        ProgressDialog progressDialog = new ProgressDialog(context);
 
         progressDialog.setTitle("loading data ....");
         progressDialog.show();
@@ -138,11 +138,63 @@ public class Repository {
 
     public void getAllTransaction(Context context, String idBudget){
         List<ModelTransaction> transList = new ArrayList<>();
-        transList.add(new ModelTransaction("4evvvre","Loyer",false,451));
+        ProgressDialog progressDialog = new ProgressDialog(context);
 
-        OneBudgetActivity ba = (OneBudgetActivity) context;
-        ba.updateTransactionUI(transList);
+        progressDialog.setTitle("loading data ....");
+        progressDialog.show();
 
+        db.collection("Transactions")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        progressDialog.dismiss();
+
+
+                        for (DocumentSnapshot doc : task.getResult()) {
+                            if(doc.getString("idBudget").equals(idBudget)){
+                                ModelTransaction modelTrans = new ModelTransaction(
+                                        doc.getString(doc.getId()),
+                                        doc.getString("description"),
+                                        doc.getBoolean("sign"),
+                                        doc.getLong("montantTransaction")
+                                );
+                                transList.add(modelTrans);
+                            }
+                        }
+
+                        OneBudgetActivity ba = (OneBudgetActivity) context;
+                        ba.updateTransactionUI(transList);
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(context,e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addTransaction(Context context, ModelTransaction transaction){
+        db.collection("Transactions")
+                .add(transaction)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(context,"Transaction created",Toast.LENGTH_SHORT).show();
+                        Log.d("Success : ", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Toast.makeText(context,"Error, Budget not created",Toast.LENGTH_SHORT).show();
+                        Log.w("Failure : ", "Error writing document", e);
+                    }
+                });
     }
 
     /**************

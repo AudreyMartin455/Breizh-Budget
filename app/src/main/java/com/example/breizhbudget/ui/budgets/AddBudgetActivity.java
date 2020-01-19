@@ -16,7 +16,7 @@ public class AddBudgetActivity extends AppCompatActivity {
 
     @BindView(R.id.intitule)
     EditText name;
-    @BindView(R.id.montant)
+    @BindView(R.id.montantTransAdd)
     EditText montant;
 
     Repository repository;

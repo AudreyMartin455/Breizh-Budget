@@ -1,7 +1,7 @@
 package com.example.breizhbudget.ui.budgets;
 
 public class ModelTransaction {
-    private String idTransaction;
+    private String idBudget;
     private String description;
     private boolean sign;
     private long montantTransaction;
@@ -15,18 +15,18 @@ public class ModelTransaction {
     }
 
     public ModelTransaction(String id, String desc, boolean sign, long montant){
-        this.idTransaction = id;
+        this.idBudget = id;
         this.description = desc;
         this.sign = sign;
         this.montantTransaction = montant;
     }
 
-    public String getIdTransaction() {
-        return idTransaction;
+    public String getIdBudget() {
+        return idBudget;
     }
 
-    public void setIdTransaction(String idTransaction) {
-        this.idTransaction = idTransaction;
+    public void setIdBudget(String idBudget) {
+        this.idBudget = idBudget;
     }
 
     public String getDescription() {

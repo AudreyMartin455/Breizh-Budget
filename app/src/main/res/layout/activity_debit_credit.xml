@@ -44,7 +44,7 @@
         <TableRow>
 
             <RadioGroup
-                android:id="@+id/radioGroup"
+                android:id="@+id/sign"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -103,7 +103,7 @@
 
             <!-- first element of the row-->
             <TextView
-                android:id="@+id/Montant"
+                android:id="@+id/montantTrans"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="18dip"
@@ -112,7 +112,7 @@
                 android:textSize="14dp" />
 
             <EditText
-                android:id="@+id/montant"
+                android:id="@+id/montantTransAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -127,7 +127,7 @@
 
             <!-- first element of the row-->
             <TextView
-                android:id="@+id/Description"
+                android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="18dip"

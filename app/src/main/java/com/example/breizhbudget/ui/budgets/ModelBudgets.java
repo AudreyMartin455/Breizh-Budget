@@ -75,4 +75,8 @@ public class ModelBudgets implements Parcelable {
             return new ModelBudgets[size];
         }
     };
+
+    public String toString(){
+        return this.id + " " + this.name + " " + this.montant;
+    }
 }

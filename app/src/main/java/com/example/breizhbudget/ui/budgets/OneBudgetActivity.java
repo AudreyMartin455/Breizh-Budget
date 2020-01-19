@@ -2,6 +2,7 @@ package com.example.breizhbudget.ui.budgets;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +47,7 @@ public class OneBudgetActivity extends AppCompatActivity {
         budgetLayoutManager = new LinearLayoutManager(this);
         recycler_row.setLayoutManager(budgetLayoutManager);
 
-        this.repository.getAllTransaction(this,budget.getId());
+        this.repository.getAllTransaction(this,this.budget.getId());
 
     }
 
@@ -60,6 +61,7 @@ public class OneBudgetActivity extends AppCompatActivity {
     @OnClick(R.id.addRow)
     public void showAddRowManually(){
         Intent intent = new Intent(OneBudgetActivity.this, AddRowActivity.class);
+        intent.putExtra("BUDGET",this.budget);
         startActivity(intent);
     }
 

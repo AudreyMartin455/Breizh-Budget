@@ -33,7 +33,7 @@ android:paddingTop="?attr/actionBarSize">
         app:layout_constraintTop_toBottomOf="@+id/titre" />
 
     <EditText
-        android:id="@+id/montant"
+        android:id="@+id/montantTransAdd"
         android:layout_width="344dp"
         android:layout_height="60dp"
         android:hint="Montant du budget"
