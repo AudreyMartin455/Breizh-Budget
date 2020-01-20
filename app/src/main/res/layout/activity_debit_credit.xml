@@ -32,7 +32,7 @@
         android:id="@+id/events"
         android:layout_width="300dp"
         android:layout_height="400dp"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,8 +80,9 @@
             <!-- first element of the row-->
             <TextView
                 android:id="@+id/Nom"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:padding="18dip"
                 android:text="Nom"
                 android:textColor="#000"
@@ -89,7 +90,7 @@
 
             <EditText
                 android:id="@+id/nom"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content" />
 
 
@@ -104,8 +105,9 @@
             <!-- first element of the row-->
             <TextView
                 android:id="@+id/montantTrans"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:padding="18dip"
                 android:text="Montant"
                 android:textColor="#000"
@@ -113,6 +115,7 @@
 
             <EditText
                 android:id="@+id/montantTransAdd"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -128,8 +131,9 @@
             <!-- first element of the row-->
             <TextView
                 android:id="@+id/description"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:padding="18dip"
                 android:text="Description:"
                 android:textColor="#000"
