@@ -2,16 +2,14 @@ package com.example.breizhbudget.ui.budgets;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.breizhbudget.R;
 import com.example.breizhbudget.Repository;
+import com.example.breizhbudget.camera.OcrCaptureActivity;
 
 import java.util.List;
 
@@ -52,6 +50,7 @@ public class OneBudgetActivity extends AppCompatActivity {
 
         this.repository.getAllTransaction(this,this.budget.getId());
 
+
     }
 
     public void updateTransactionUI(List<ModelTransaction> transList){
@@ -76,8 +75,10 @@ public class OneBudgetActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.scannerButton)
     public void addRowScan(){
-
+        Intent intent = new Intent(OneBudgetActivity.this, OcrCaptureActivity.class);
+        startActivity(intent);
     }
 
 }

@@ -168,7 +168,7 @@
 
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/scannerButton"
         android:layout_width="145dp"
         android:layout_height="54dp"
         android:text="Ajouter un budget"

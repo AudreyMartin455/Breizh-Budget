@@ -32,7 +32,7 @@
         android:text="TOTAL DU MOIS"
         android:textColor="#000"
         android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/button1"
+        app:layout_constraintBottom_toTopOf="@+id/scannerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.064"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
         android:id="@+id/recycler_transaction"
         android:layout_width="375dp"
         android:layout_height="334dp"
-        app:layout_constraintBottom_toTopOf="@+id/button1"
+        app:layout_constraintBottom_toTopOf="@+id/scannerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titre"
@@ -95,7 +95,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/scannerButton"
         android:layout_width="100dp"
         android:layout_height="75dp"
         android:text="Scanner"
@@ -111,10 +111,10 @@
         android:layout_width="100dp"
         android:layout_height="75dp"
         android:text="Ajouter un débit/crédit"
-        app:layout_constraintBottom_toBottomOf="@+id/button1"
+        app:layout_constraintBottom_toBottomOf="@+id/scannerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.757"
-        app:layout_constraintStart_toEndOf="@+id/button1"
+        app:layout_constraintStart_toEndOf="@+id/scannerButton"
         app:layout_constraintTop_toBottomOf="@+id/titre"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -124,8 +124,8 @@
         android:layout_height="75dp"
         android:text="Modifier le budget"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/button1"
-        app:layout_constraintEnd_toStartOf="@+id/button1"
+        app:layout_constraintBottom_toBottomOf="@+id/scannerButton"
+        app:layout_constraintEnd_toStartOf="@+id/scannerButton"
         app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
