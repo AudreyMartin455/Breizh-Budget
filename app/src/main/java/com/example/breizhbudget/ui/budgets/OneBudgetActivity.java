@@ -55,7 +55,7 @@ public class OneBudgetActivity extends AppCompatActivity {
     }
 
     public void updateTransactionUI(List<ModelTransaction> transList){
-        long total = 0;
+        long total = this.budget.getMontant();
         for (int i = 0 ; i < transList.size() ; i++){
             if(transList.get(i).isSign()){
                 total = total + transList.get(i).getMontantTransaction();

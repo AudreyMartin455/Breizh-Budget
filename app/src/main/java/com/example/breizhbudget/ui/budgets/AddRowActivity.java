@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,18 +42,13 @@ public class AddRowActivity extends AppCompatActivity {
 
     @OnClick(R.id.confirmRow)
     public void addRow(){
-       /* ModelTransaction transaction = new ModelTransaction(
+       ModelTransaction transaction = new ModelTransaction(
                 this.budget.getId(),
                 this.description.getText().toString(),
                 this.sign,
                 Long.parseLong(montant.getText().toString())
-        );*/
-       ModelTransaction transaction = new ModelTransaction(
-               this.budget.getId(),
-               "Loyer",
-               this.sign,
-               400
-       );
+        );
+
         repository.addTransaction(this, transaction);
         Intent intent = new Intent(AddRowActivity.this, OneBudgetActivity.class);
         intent.putExtra("BUDGET",this.budget);
