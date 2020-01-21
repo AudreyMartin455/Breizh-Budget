@@ -3,6 +3,7 @@ package com.example.breizhbudget.ui.budgets;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,8 @@ public class OneBudgetActivity extends AppCompatActivity {
     TextView viewTitle;
     @BindView(R.id.recycler_transaction)
     RecyclerView recycler_row;
+    @BindView(R.id.total_budget)
+    TextView totalBudget;
 
     private TransactionAdapter transactionAdapter;
     private RecyclerView.LayoutManager budgetLayoutManager;
@@ -52,10 +55,18 @@ public class OneBudgetActivity extends AppCompatActivity {
     }
 
     public void updateTransactionUI(List<ModelTransaction> transList){
+        long total = 0;
         for (int i = 0 ; i < transList.size() ; i++){
+            if(transList.get(i).isSign()){
+                total = total + transList.get(i).getMontantTransaction();
+            }else{
+                total = total - transList.get(i).getMontantTransaction();
+            }
+
             transactionAdapter = new TransactionAdapter(OneBudgetActivity.this, transList);
             recycler_row.setAdapter(transactionAdapter);
         }
+        this.totalBudget.setText(total + " €");
     }
 
     @OnClick(R.id.addRow)
@@ -68,4 +79,5 @@ public class OneBudgetActivity extends AppCompatActivity {
     public void addRowScan(){
 
     }
+
 }
