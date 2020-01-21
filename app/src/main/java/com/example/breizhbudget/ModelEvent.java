@@ -1,18 +1,21 @@
 package com.example.breizhbudget;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModelEvent {
 
 
     String id,title;
+    ArrayList<Participant> participants;
 
-    public ModelEvent(){}
+    public ModelEvent() {
+    }
 
-
-
-    public  ModelEvent(String id, String title){
-
-        this.id=id;
-        this.title=title;
+    public ModelEvent(String id, String title, ArrayList<Participant> participants) {
+        this.id = id;
+        this.title = title;
+        this.participants = participants;
     }
 
     public void setId(String id) {
@@ -23,11 +26,19 @@ public class ModelEvent {
         this.title = title;
     }
 
+    public void setParticipants(ArrayList<Participant> participants) {
+        this.participants = participants;
+    }
+
     public String getId() {
         return id;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public ArrayList<Participant> getParticipants() {
+        return participants;
     }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize">
+    tools:context=".ViewEvent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recycler_view_participant"
         android:layout_width="401dp"
         android:layout_height="418dp"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="@+id/nav_host_fragment" />
 
     <com.getbase.floatingactionbutton.AddFloatingActionButton
-        android:id="@+id/add_button"
+        android:id="@+id/add_participant"
         android:layout_width="89dp"
         android:layout_height="32dp"
         android:layout_centerHorizontal="true"
@@ -51,5 +51,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

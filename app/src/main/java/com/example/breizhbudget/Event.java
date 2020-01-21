@@ -16,7 +16,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -33,6 +35,7 @@ public class Event extends AppCompatActivity {
 
         madd=findViewById(R.id.button4);
         mtitle=findViewById(R.id.editText2222);
+        List<Participant> participantList = new ArrayList<>();
 
         pd = new ProgressDialog(this);
         db =FirebaseFirestore.getInstance();
@@ -41,7 +44,7 @@ public class Event extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String title= mtitle.getText().toString().trim();
-                uploadDta(title);
+                uploadDta(title,participantList);
             }
 
         });
@@ -49,13 +52,14 @@ public class Event extends AppCompatActivity {
 
     }
 
-    private void uploadDta(String title) {
+    private void uploadDta(String title, List<Participant> participantList) {
         pd.setTitle("adding data");
         pd.show();
-        String id = UUID.randomUUID().toString();
+        String id = title;
         Map<String, Object> evnt= new HashMap<>();
-        evnt.put("id",id);
+        evnt.put("id",title);
         evnt.put("title",title);
+        evnt.put("participants",participantList);
         db.collection("Events").document(id).set(evnt)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

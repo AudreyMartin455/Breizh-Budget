@@ -1,24 +1,27 @@
 package com.example.breizhbudget;
 
-import android.app.ListActivity;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
-
+    Context c;
     EventActivity listActivity;
     List<ModelEvent> modelEventList;
+    ArrayList<Participant> participantList;
 
 
     public EventAdapter(EventActivity listActivity, List<ModelEvent> modelEventList) {
@@ -40,9 +43,12 @@ public class EventAdapter extends RecyclerView.Adapter<ViewHolder> {
         viewHolder.onClickListener(new ViewHolder.ClickListener() {
             @Override
             public void onItemclick(View view, int position) {
-                //this will be called when user click item
                 String title = modelEventList.get(position).getTitle();
-                Toast.makeText(listActivity,title+"\n",Toast.LENGTH_SHORT).show();
+                String id = modelEventList.get(position).getId();
+                Intent intent = new Intent(listActivity,ViewEvent.class);
+                intent.putExtra("title", title);
+                listActivity.startActivity(intent);
+
             }
         });
 
