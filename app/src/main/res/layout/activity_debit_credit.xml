@@ -69,32 +69,7 @@
 
 
         </TableRow>
-
-
-        <TableRow
-
-            android:id="@+id/Row"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <!-- first element of the row-->
-            <TextView
-                android:id="@+id/Nom"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="18dip"
-                android:text="Nom"
-                android:textColor="#000"
-                android:textSize="14dp" />
-
-            <EditText
-                android:id="@+id/nom"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content" />
-
-
-        </TableRow>
+        
 
         <TableRow
 
