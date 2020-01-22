@@ -78,6 +78,7 @@ public class OneBudgetActivity extends AppCompatActivity {
     @OnClick(R.id.scannerButton)
     public void addRowScan(){
         Intent intent = new Intent(OneBudgetActivity.this, OcrCaptureActivity.class);
+        intent.putExtra("BUDGET",this.budget);
         startActivity(intent);
     }
 

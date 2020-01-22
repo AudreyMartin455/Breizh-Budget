@@ -44,7 +44,8 @@ import java.util.Set;
  * from the preview's coordinate system to the view coordinate system.</li>
  * </ol>
  */
-public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
+public class
+GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
     private final Object lock = new Object();
     private int previewWidth;
     private float widthScaleFactor = 1.0f;

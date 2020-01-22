@@ -25,6 +25,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.ColorSpace;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -40,6 +41,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.breizhbudget.R;
+import com.example.breizhbudget.Repository;
+import com.example.breizhbudget.ui.budgets.ModelBudgets;
+import com.example.breizhbudget.ui.budgets.ModelTransaction;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.vision.text.TextBlock;
@@ -79,6 +83,10 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     // A TextToSpeech engine for speaking a String value.
     private TextToSpeech tts;
 
+
+    private ModelBudgets budget;
+    private Repository repository;
+
     /**
      * Initializes the UI and creates the detector pipeline.
      */
@@ -86,6 +94,10 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.ocr_capture);
+
+        this.budget = getIntent().getParcelableExtra("BUDGET");
+        this.repository = Repository.getInstance();
+
 
         preview = (CameraSourcePreview) findViewById(R.id.preview);
         graphicOverlay = (GraphicOverlay<OcrGraphic>) findViewById(R.id.graphicOverlay);
@@ -181,7 +193,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
         // Create the TextRecognizer
         TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
-        // TODO: Set the TextRecognizer's Processor.
+        textRecognizer.setProcessor(new OcrDetectorProcessor(graphicOverlay));
 
         // Check if the TextRecognizer is operational.
         if (!textRecognizer.isOperational()) {
@@ -326,7 +338,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      * @return true if the tap was on a TextBlock
      */
     private boolean onTap(float rawX, float rawY) {
-        OcrGraphic graphic = graphicOverlay.getGraphicAtLocation(rawX, rawY);
+       /* OcrGraphic graphic = graphicOverlay.getGraphicAtLocation(rawX, rawY);
         TextBlock text = null;
         if (graphic != null) {
             text = graphic.getTextBlock();
@@ -334,6 +346,31 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 Log.d(TAG, "text data is being spoken! " + text.getValue());
                 // Speak the string.
                 tts.speak(text.getValue(), TextToSpeech.QUEUE_ADD, null, "DEFAULT");
+            }
+            else {
+                Log.d(TAG, "text data is null");
+            }
+        }
+        else {
+            Log.d(TAG,"no text detected");
+        }
+        return text != null;*/
+
+        OcrGraphic graphic = graphicOverlay.getGraphicAtLocation(rawX, rawY);
+        TextBlock text = null;
+        if (graphic != null) {
+            text = graphic.getTextBlock();
+            if (text != null && text.getValue() != null) {
+                Log.d(TAG, "text data is being spoken! " + text.getValue());
+               //TODO Essayer le traitement de texte ici
+                try{
+                    //Integer.parseInt( text.getValue())
+                    ModelTransaction transaction = new ModelTransaction(budget.getId(),"Scanner",false,200);
+                    this.repository.addTransaction(this,transaction);
+                }catch(NumberFormatException nfe){
+                    Log.d(TAG,"Could not parse " + nfe);
+                }
+
             }
             else {
                 Log.d(TAG, "text data is null");
