@@ -136,6 +136,10 @@ public class Repository {
         this.getAllBudget(context);
     }
 
+    public void updateBudget(Context context, ModelBudgets budget){
+
+    }
+
     public void getAllTransaction(Context context, String idBudget){
         List<ModelTransaction> transList = new ArrayList<>();
         ProgressDialog progressDialog = new ProgressDialog(context);

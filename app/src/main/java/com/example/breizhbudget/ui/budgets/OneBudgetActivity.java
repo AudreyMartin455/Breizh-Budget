@@ -82,4 +82,11 @@ public class OneBudgetActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.updateBudget)
+    public void updateBudget(){
+        Intent intent = new Intent(OneBudgetActivity.this, UpdateActivity.class);
+        intent.putExtra("BUDGET",this.budget);
+        startActivity(intent);
+    }
+
 }
