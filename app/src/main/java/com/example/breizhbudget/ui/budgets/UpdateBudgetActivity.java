@@ -1,5 +1,6 @@
 package com.example.breizhbudget.ui.budgets;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 
@@ -34,9 +35,13 @@ public class UpdateBudgetActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.ajouter)
-    private void updateBudget(){
+    public void updateBudget(){
         this.budget.setMontant(Long.parseLong(montant.getText().toString()));
         this.budget.setName(name.getText().toString());
+
         this.repository.updateBudget(this, this.budget);
+
+        Intent intent = new Intent(UpdateBudgetActivity.this, OneBudgetActivity.class);
+        startActivity(intent);
     }
 }

@@ -137,7 +137,20 @@ public class Repository {
     }
 
     public void updateBudget(Context context, ModelBudgets budget){
-
+        db.collection("Budgets").document(budget.getId())
+                .set(budget)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
     }
 
     public void getAllTransaction(Context context, String idBudget){
@@ -158,6 +171,7 @@ public class Repository {
                         for (DocumentSnapshot doc : task.getResult()) {
                             if(doc.getString("idBudget").equals(idBudget)){
                                 ModelTransaction modelTrans = new ModelTransaction(
+                                        doc.getId(),
                                         doc.getString(doc.getId()),
                                         doc.getString("description"),
                                         doc.getBoolean("sign"),
@@ -197,6 +211,25 @@ public class Repository {
 
                         Toast.makeText(context,"Error, Budget not created",Toast.LENGTH_SHORT).show();
                         Log.w("Failure : ", "Error writing document", e);
+                    }
+                });
+    }
+
+    public void deleteTransaction(Context context, ModelTransaction transaction){
+        db.collection("Transactions").document(transaction.getIdTransaction())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context,"Budget deleted",Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context,"Error, Budget not deleted",Toast.LENGTH_SHORT).show();
+                        Log.w(TAG, "Error deleting document", e);
                     }
                 });
     }
