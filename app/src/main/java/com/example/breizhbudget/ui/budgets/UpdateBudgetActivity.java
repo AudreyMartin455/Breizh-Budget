@@ -2,6 +2,7 @@ package com.example.breizhbudget.ui.budgets;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,8 @@ public class UpdateBudgetActivity extends AppCompatActivity {
     EditText name;
     @BindView(R.id.montantTransAdd)
     EditText montant;
+    @BindView(R.id.ajouter)
+    Button addButton;
 
     private Repository repository;
     private ModelBudgets budget;
@@ -30,7 +33,9 @@ public class UpdateBudgetActivity extends AppCompatActivity {
         this.repository = Repository.getInstance();
 
         this.budget = getIntent().getParcelableExtra("BUDGET");
-
+        this.name.setText(this.budget.getName());
+        this.montant.setText(this.budget.getMontant()+"");
+        this.addButton.setText("Valider");
 
     }
 
@@ -42,6 +47,7 @@ public class UpdateBudgetActivity extends AppCompatActivity {
         this.repository.updateBudget(this, this.budget);
 
         Intent intent = new Intent(UpdateBudgetActivity.this, OneBudgetActivity.class);
+        intent.putExtra("BUDGET",this.budget);
         startActivity(intent);
     }
 }
