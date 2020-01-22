@@ -10,6 +10,10 @@ public class ModelTransaction {
 
     public ModelTransaction(){}
 
+    public ModelTransaction(String idTrans){
+        this.idTransaction = idTrans;
+    }
+
     public ModelTransaction(String desc, boolean sign, long montant){
         this.description = desc;
         this.sign = sign;

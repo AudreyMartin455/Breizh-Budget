@@ -14,6 +14,7 @@ import com.example.breizhbudget.R;
 import com.example.breizhbudget.Repository;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Checked;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class AddRowActivity extends AppCompatActivity implements Validator.Valid
     @NotEmpty
     @BindView(R.id.montantTransAdd)
     EditText montant;
-    @NotEmpty
+    @Checked
     @BindView(R.id.sign)
     RadioGroup signTrans;
     @BindView(R.id.deb)

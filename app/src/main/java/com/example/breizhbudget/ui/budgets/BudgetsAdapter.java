@@ -46,7 +46,6 @@ public class BudgetsAdapter extends RecyclerView.Adapter<ViewHolder> {
                 activity.show1Budget(budget);
             }
 
-
         });
 
 

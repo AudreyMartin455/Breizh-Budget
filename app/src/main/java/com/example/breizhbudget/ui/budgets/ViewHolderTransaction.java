@@ -1,6 +1,7 @@
 package com.example.breizhbudget.ui.budgets;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ public class ViewHolderTransaction extends RecyclerView.ViewHolder {
     TextView description;
     TextView sign;
     TextView montant_trans;
+    Button deleteTransaction;
     View mView;
 
     public ViewHolderTransaction(@NonNull View itemView) {
@@ -33,6 +35,16 @@ public class ViewHolderTransaction extends RecyclerView.ViewHolder {
         this.description = itemView.findViewById(R.id.description);
         this.sign = itemView.findViewById(R.id.sign);
         this.montant_trans = itemView.findViewById(R.id.montant_trans);
+        this.deleteTransaction = itemView.findViewById(R.id.deleteTransaction);
+
+        deleteTransaction.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                OneBudgetActivity ba = (OneBudgetActivity) v.getContext();
+                ba.deleteTransaction(getAdapterPosition());
+            }
+        });
 
     }
 

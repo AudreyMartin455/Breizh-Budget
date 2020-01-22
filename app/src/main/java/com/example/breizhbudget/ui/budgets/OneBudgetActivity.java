@@ -1,5 +1,8 @@
 package com.example.breizhbudget.ui.budgets;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -33,6 +36,8 @@ public class OneBudgetActivity extends AppCompatActivity {
     private Repository repository;
     private ModelBudgets budget;
 
+    private List<ModelTransaction> listTransactions;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
@@ -54,6 +59,8 @@ public class OneBudgetActivity extends AppCompatActivity {
     }
 
     public void updateTransactionUI(List<ModelTransaction> transList){
+        this.listTransactions = transList;
+
         long total = this.budget.getMontant();
         for (int i = 0 ; i < transList.size() ; i++){
             if(transList.get(i).isSign()){
@@ -76,7 +83,7 @@ public class OneBudgetActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.scannerButton)
-    public void addRowScan(){
+    public void addTransactionScan(){
         Intent intent = new Intent(OneBudgetActivity.this, OcrCaptureActivity.class);
         intent.putExtra("BUDGET",this.budget);
         startActivity(intent);
@@ -87,6 +94,23 @@ public class OneBudgetActivity extends AppCompatActivity {
         Intent intent = new Intent(OneBudgetActivity.this, UpdateBudgetActivity.class);
         intent.putExtra("BUDGET",this.budget);
         startActivity(intent);
+    }
+
+    public void deleteTransaction(int position){
+        ModelTransaction transaction = new ModelTransaction(this.listTransactions.get(position).getIdTransaction());
+
+        Context context  = this;
+        new AlertDialog.Builder(this)
+                .setTitle("Supprimer une transaction")
+                .setMessage("Voulez-vous vraiment supprimer cette transaction ?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        repository.deleteTransaction(context,transaction,budget.getId());
+                    }})
+                .setNegativeButton("Non", null).show();
+
     }
 
 }
