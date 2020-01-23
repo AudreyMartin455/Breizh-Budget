@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.breizhbudget.Accueil;
 import com.example.breizhbudget.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -85,6 +86,11 @@ public class BudgetsActivity extends AppCompatActivity {
     public void show1Budget(ModelBudgets budget){
         Intent intent = new Intent(BudgetsActivity.this, OneBudgetActivity.class);
         intent.putExtra("BUDGET",budget);
+        startActivity(intent);
+    }
+
+    public void returnToHome(){
+        Intent intent = new Intent(BudgetsActivity.this, Accueil.class);
         startActivity(intent);
     }
 

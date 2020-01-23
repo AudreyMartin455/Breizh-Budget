@@ -73,4 +73,9 @@ public class AddBudgetActivity extends AppCompatActivity implements Validator.Va
             }
         }
     }
+
+    public void returnToParent(){
+        Intent intent = new Intent(AddBudgetActivity.this, BudgetsActivity.class);
+        startActivity(intent);
+    }
 }

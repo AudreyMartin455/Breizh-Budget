@@ -50,4 +50,10 @@ public class UpdateBudgetActivity extends AppCompatActivity {
         intent.putExtra("BUDGET",this.budget);
         startActivity(intent);
     }
+
+    public void returnToParent(){
+        Intent intent = new Intent(UpdateBudgetActivity.this, OneBudgetActivity.class);
+        intent.putExtra("BUDGET",this.budget);
+        startActivity(intent);
+    }
 }

@@ -113,4 +113,9 @@ public class OneBudgetActivity extends AppCompatActivity {
 
     }
 
+    public void returnToBudget(){
+        Intent intent = new Intent(OneBudgetActivity.this, BudgetsActivity.class);
+        startActivity(intent);
+    }
+
 }

@@ -103,4 +103,10 @@ public class AddRowActivity extends AppCompatActivity implements Validator.Valid
             }
         }
     }
+
+    public void returnToParent(){
+        Intent intent = new Intent(AddRowActivity.this, OneBudgetActivity.class);
+        intent.putExtra("BUDGET",this.budget);
+        startActivity(intent);
+    }
 }
