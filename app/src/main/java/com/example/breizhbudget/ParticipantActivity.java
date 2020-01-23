@@ -103,5 +103,9 @@ public class ParticipantActivity extends AppCompatActivity {
 
             }
         });
+
+        Intent intent = new Intent(ParticipantActivity.this, ViewEvent.class);
+        intent.putExtra("title", newString);
+        startActivity(intent);
     }
 }
