@@ -2,9 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.tp1.MainActivity">
 
-    <item android:title="Budgets" />
-    <item android:title="Dettes" />
-    <item android:title="Evènements" />
-    <item android:title="Paramètres" />
-    <item android:title="Contact" />
+    <item android:id="@+id/burgerMenu_Budget"
+          android:title="Budgets" />
+
+    <item android:id="@+id/burgerMenu_Dettes"
+          android:title="Dettes" />
+
+    <item android:id="@+id/burgerMenu_Event"
+          android:title="Evènements" />
+
+    <item android:id="@+id/burgerMenu_Parametre"
+          android:title="Paramètres" />
+
+    <item android:id="@+id/burgerMenu_Contacts"
+          android:title="Contact" />
 </menu>
