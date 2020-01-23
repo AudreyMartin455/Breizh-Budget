@@ -46,7 +46,7 @@ public class ViewEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_event);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_participant);
+        Button fab = (Button) findViewById(R.id.add_participant);
         Button buttonComptage = (Button) findViewById(R.id.buttonComptage);
 
 

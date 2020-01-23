@@ -14,16 +14,17 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="129dp" />
 
-    <com.getbase.floatingactionbutton.AddFloatingActionButton
+    <Button
         android:id="@+id/add_participant"
-        android:layout_width="89dp"
-        android:layout_height="32dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="28dp"
-        android:icon="@drawable/ic_add_circle_outline_black_24dp"
+        android:layout_width="122dp"
+        android:layout_height="73dp"
+        android:text="Ajouter un événement"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
 
     <Button
         android:id="@+id/buttonComptage"

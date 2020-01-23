@@ -44,7 +44,7 @@ public class EventActivity extends AppCompatActivity {
 
 
 
-    @BindView(R.id.add_button) FloatingActionButton addbutton;
+    @BindView(R.id.add_button) Button addbutton;
    // @BindView(R.id.button) Button ViewEvent;
 
     List<ModelEvent> modelEvents = new ArrayList<>();
@@ -72,7 +72,7 @@ public class EventActivity extends AppCompatActivity {
         mR.setLayoutManager(layoutManager);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_button);
+        Button fab = (Button) findViewById(R.id.add_button);
 
 
 
