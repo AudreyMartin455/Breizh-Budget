@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +32,7 @@ import butterknife.ButterKnife;
  */
 public class Event extends AppCompatActivity {
 
-    @NonNull
+    @NotEmpty
     @BindView(R.id.editText2222)
     EditText mtitle;
     @BindView(R.id.button4)
