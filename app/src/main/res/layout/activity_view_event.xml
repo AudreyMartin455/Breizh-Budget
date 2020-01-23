@@ -18,7 +18,7 @@
         android:id="@+id/add_participant"
         android:layout_width="122dp"
         android:layout_height="73dp"
-        android:text="Ajouter un événement"
+        android:text="Ajouter une dépense"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.93"
