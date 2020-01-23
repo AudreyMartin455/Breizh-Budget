@@ -41,7 +41,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.breizhbudget.R;
-import com.example.breizhbudget.Repository;
+import com.example.breizhbudget.RepositoryBudget;
 import com.example.breizhbudget.ui.budgets.ModelBudgets;
 import com.example.breizhbudget.ui.budgets.ModelTransaction;
 import com.google.android.gms.common.ConnectionResult;
@@ -85,7 +85,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
 
     private ModelBudgets budget;
-    private Repository repository;
+    private RepositoryBudget repository;
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -96,7 +96,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         setContentView(R.layout.ocr_capture);
 
         this.budget = getIntent().getParcelableExtra("BUDGET");
-        this.repository = Repository.getInstance();
+        this.repository = RepositoryBudget.getInstance();
 
 
         preview = (CameraSourcePreview) findViewById(R.id.preview);

@@ -8,7 +8,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.breizhbudget.R;
-import com.example.breizhbudget.Repository;
+import com.example.breizhbudget.RepositoryBudget;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,14 +23,14 @@ public class UpdateBudgetActivity extends AppCompatActivity {
     @BindView(R.id.ajouter)
     Button addButton;
 
-    private Repository repository;
+    private RepositoryBudget repository;
     private ModelBudgets budget;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newbudget);
         ButterKnife.bind(this);
-        this.repository = Repository.getInstance();
+        this.repository = RepositoryBudget.getInstance();
 
         this.budget = getIntent().getParcelableExtra("BUDGET");
         this.name.setText(this.budget.getName());

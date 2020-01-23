@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.breizhbudget.R;
-import com.example.breizhbudget.Repository;
+import com.example.breizhbudget.RepositoryBudget;
 import com.example.breizhbudget.camera.OcrCaptureActivity;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class OneBudgetActivity extends AppCompatActivity {
 
     private TransactionAdapter transactionAdapter;
     private RecyclerView.LayoutManager budgetLayoutManager;
-    private Repository repository;
+    private RepositoryBudget repository;
     private ModelBudgets budget;
 
     private List<ModelTransaction> listTransactions;
@@ -42,7 +42,7 @@ public class OneBudgetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
         ButterKnife.bind(this);
-        this.repository = Repository.getInstance();
+        this.repository = RepositoryBudget.getInstance();
 
 
         this.budget = getIntent().getParcelableExtra("BUDGET");

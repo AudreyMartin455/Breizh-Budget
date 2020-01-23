@@ -1,4 +1,4 @@
-package com.example.breizhbudget;
+package com.example.breizhbudget.ui.event;
 
 public class Participant {
 

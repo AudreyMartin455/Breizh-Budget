@@ -1,7 +1,6 @@
-package com.example.breizhbudget;
+package com.example.breizhbudget.ui.event;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ModelEvent {
 

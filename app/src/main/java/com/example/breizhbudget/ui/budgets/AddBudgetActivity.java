@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.breizhbudget.R;
-import com.example.breizhbudget.Repository;
+import com.example.breizhbudget.RepositoryBudget;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -30,7 +30,7 @@ public class AddBudgetActivity extends AppCompatActivity implements Validator.Va
     @BindView(R.id.montantAddBudget)
     EditText montant;
 
-    Repository repository;
+    RepositoryBudget repository;
     Validator validator;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class AddBudgetActivity extends AppCompatActivity implements Validator.Va
         setContentView(R.layout.activity_newbudget);
         ButterKnife.bind(this);
 
-        this.repository = Repository.getInstance();
+        this.repository = RepositoryBudget.getInstance();
 
         this.validator = new Validator(this);
         this.validator.setValidationListener(this);

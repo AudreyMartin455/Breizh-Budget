@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.breizhbudget">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,14 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ComptageActivity"></activity>
-        <activity android:name=".ParticipantActivity" />
-        <activity android:name=".ViewEvent" />
+        <activity android:name=".ui.event.ComptageActivity"></activity>
+        <activity android:name=".ui.event.ParticipantActivity" />
+        <activity android:name=".ui.event.ViewEvent" />
         <activity
-            android:name=".EventActivity"
+            android:name=".ui.event.EventActivity"
             android:label="@string/title_activity_event" />
         <activity
-            android:name=".Event"
+            android:name=".ui.event.Event"
             android:label="NewEvent" />
         <activity
             android:name=".Accueil"

@@ -1,8 +1,7 @@
-package com.example.breizhbudget;
+package com.example.breizhbudget.ui.event;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +9,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
+import com.example.breizhbudget.R;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<ViewHolder> {

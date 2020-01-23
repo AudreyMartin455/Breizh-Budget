@@ -1,6 +1,5 @@
-package com.example.breizhbudget;
+package com.example.breizhbudget.ui.event;
 
-import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,36 +8,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.example.breizhbudget.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import android.util.Log;
-import java.util.Map;
-import java.util.UUID;
-import java.util.logging.Logger;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class EventActivity extends AppCompatActivity {
 

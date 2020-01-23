@@ -29,30 +29,22 @@ import java.util.Map;
  * Classe qui utilise Firebase
  */
 
-public class Repository {
+public class RepositoryBudget {
 
-    private static Repository repository;
+    private static RepositoryBudget repository;
     private FirebaseFirestore db;
     private final String TAG = ">>>>>";
 
-    private Repository(){
+    private RepositoryBudget(){
         this.db = FirebaseFirestore.getInstance();
     }
 
-    public static synchronized Repository getInstance(){
+    public static synchronized RepositoryBudget getInstance(){
         if(repository == null){
-            repository = new Repository();
+            repository = new RepositoryBudget();
         }
         return repository;
     }
-
-    /**************
-     *
-     *
-     *  Budget's methods
-     *
-     *
-     ***************/
 
     /**
      * Retourne tous les budgets
@@ -235,21 +227,4 @@ public class Repository {
         this.getAllTransaction(context,idBudget);
     }
 
-    /**************
-     *
-     *
-     *  Dette's methods
-     *
-     *
-     ***************/
-
-
-
-    /**************
-     *
-     *
-     *  Event's methods
-     *
-     *
-     ***************/
 }

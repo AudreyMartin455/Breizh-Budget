@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.breizhbudget.Repository;
+import com.example.breizhbudget.RepositoryBudget;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class BudgetsActivity extends AppCompatActivity {
 
     private BudgetsAdapter budgetAdapter;
     private RecyclerView.LayoutManager budgetLayoutManager;
-    private Repository repository;
+    private RepositoryBudget repository;
 
     private List<ModelBudgets> listBudgets;
 
@@ -38,7 +38,7 @@ public class BudgetsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_budgets);
         ButterKnife.bind(this);
 
-        this.repository = Repository.getInstance();
+        this.repository = RepositoryBudget.getInstance();
 
         recycler_budgets.setHasFixedSize(true);
         budgetLayoutManager = new LinearLayoutManager(this);

@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.breizhbudget.R;
-import com.example.breizhbudget.Repository;
+import com.example.breizhbudget.RepositoryBudget;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Checked;
@@ -39,7 +39,7 @@ public class AddRowActivity extends AppCompatActivity implements Validator.Valid
     @BindView(R.id.cred)
     RadioButton credit;
 
-    private Repository repository;
+    private RepositoryBudget repository;
     Validator validator;
 
     private ModelBudgets budget;
@@ -50,7 +50,7 @@ public class AddRowActivity extends AppCompatActivity implements Validator.Valid
         setContentView(R.layout.activity_debit_credit);
         ButterKnife.bind(this);
 
-        this.repository = Repository.getInstance();
+        this.repository = RepositoryBudget.getInstance();
         this.budget = getIntent().getParcelableExtra("BUDGET");
 
         this.validator = new Validator(this);

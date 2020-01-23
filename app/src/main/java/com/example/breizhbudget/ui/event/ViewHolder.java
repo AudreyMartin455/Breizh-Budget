@@ -1,4 +1,4 @@
-package com.example.breizhbudget;
+package com.example.breizhbudget.ui.event;
 
 import android.view.View;
 import android.widget.TextView;
@@ -6,15 +6,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.breizhbudget.R;
+
 import java.util.List;
 
-public class ViewHolderParticipant extends RecyclerView.ViewHolder {
+public class ViewHolder extends RecyclerView.ViewHolder {
 
-    TextView mName,mMontant;
+    TextView mTitleEvent;
     List<Participant> mparticipantList;
     View mView;
 
-    public ViewHolderParticipant(@NonNull View itemView) {
+    public ViewHolder(@NonNull View itemView) {
         super(itemView);
         mView = itemView;
         //item click
@@ -29,8 +31,7 @@ public class ViewHolderParticipant extends RecyclerView.ViewHolder {
 
         // initialize views with Eventmodel layout
 
-        mName= itemView.findViewById(R.id.textViewName);
-        mMontant = itemView.findViewById(R.id.textViewMonatnt);
+        mTitleEvent= itemView.findViewById(R.id.textView);
 
 
     }
