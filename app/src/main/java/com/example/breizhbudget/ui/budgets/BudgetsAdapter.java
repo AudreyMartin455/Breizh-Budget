@@ -11,10 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.breizhbudget.R;
+import com.example.breizhbudget.ViewHolder;
 
 import java.util.List;
 
-public class BudgetsAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class BudgetsAdapter extends RecyclerView.Adapter<ViewHolderBudget> {
 
 
 
@@ -32,13 +33,13 @@ public class BudgetsAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolderBudget onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //inflate layout
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_budget, parent , false);
         //handle item clicks here
 
-        ViewHolder viewHolder = new ViewHolder(itemView);
-        viewHolder.onClickListener(new ViewHolder.ClickListener() {
+        ViewHolderBudget viewHolder = new ViewHolderBudget(itemView);
+        viewHolder.onClickListener(new ViewHolderBudget.ClickListener() {
             @Override
             public void onItemclick(View view, int position) {
                 //this will be called when user click item
@@ -53,7 +54,7 @@ public class BudgetsAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderBudget holder, int position) {
 
         //bind view setdata
         holder.nameBudget.setText(modelBudgetsList.get(position).getName());

@@ -11,9 +11,8 @@
     <TextView
 
         android:id="@+id/total_budget"
-        android:layout_width="92dp"
-        android:layout_height="60dp"
-        android:padding="18dip"
+        android:layout_width="71dp"
+        android:layout_height="37dp"
         android:text="-500$"
         android:textColor="#000"
         android:textSize="14dp"
@@ -22,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toEndOf="@+id/total"
         app:layout_constraintTop_toBottomOf="@+id/valeur_budget"
-        app:layout_constraintVertical_bias="0.946" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/total"
@@ -41,7 +40,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_transaction"
-        android:layout_width="375dp"
+        android:layout_width="350dp"
         android:layout_height="334dp"
         app:layout_constraintBottom_toTopOf="@+id/scannerButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +77,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/total"
         app:layout_constraintTop_toBottomOf="@+id/titre"
-        app:layout_constraintVertical_bias="0.056" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/titre"

@@ -38,7 +38,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<ViewHolderTransacti
         //handle item clicks here
 
         ViewHolderTransaction viewHolder = new ViewHolderTransaction(itemView);
-        viewHolder.onClickListener(new ViewHolder.ClickListener() {
+        viewHolder.onClickListener(new ViewHolderTransaction.ClickListener() {
             @Override
             public void onItemclick(View view, int position) {
                 //this will be called when user click item

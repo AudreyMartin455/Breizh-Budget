@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.breizhbudget.R;
 
-public class ViewHolder extends RecyclerView.ViewHolder {
+public class ViewHolderBudget extends RecyclerView.ViewHolder {
 
     TextView nameBudget;
     TextView montantBudget;
     Button deleteBudget;
     View mView;
 
-    public ViewHolder(@NonNull View itemView) {
+    public ViewHolderBudget(@NonNull View itemView) {
         super(itemView);
         mView = itemView;
         //item click
@@ -50,14 +50,14 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
 
     // interface for click listener
-    private ViewHolder.ClickListener mclicklistener;
+    private ViewHolderBudget.ClickListener mclicklistener;
     public interface ClickListener{
         void  onItemclick(View view, int position);
 
     }
 
 
-    public  void onClickListener(ViewHolder.ClickListener clickListener){
+    public  void onClickListener(ViewHolderBudget.ClickListener clickListener){
         mclicklistener=clickListener;
     }
 }
