@@ -31,13 +31,13 @@ public class Accueil extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 //Ligne pour le bouton Evenements
-   /*     buttonEvent.setOnClickListener(new View.OnClickListener(){
+        buttonEvent.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View V){
                 Intent intent = new Intent(Accueil.this, EventActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });ls
 
         buttonBudget.setOnClickListener(new View.OnClickListener(){
 
