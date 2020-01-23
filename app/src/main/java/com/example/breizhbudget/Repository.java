@@ -133,7 +133,7 @@ public class Repository {
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
-        this.getAllBudget(context);
+
     }
 
     public void updateBudget(Context context, ModelBudgets budget){

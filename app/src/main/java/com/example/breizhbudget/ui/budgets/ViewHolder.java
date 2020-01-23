@@ -1,5 +1,6 @@
 package com.example.breizhbudget.ui.budgets;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 BudgetsActivity ba = (BudgetsActivity) v.getContext();
                 ba.deleteBudget(getAdapterPosition());
+
             }
         });
 

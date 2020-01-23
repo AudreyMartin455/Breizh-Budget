@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.breizhbudget.R;
 
@@ -16,13 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.breizhbudget.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Optional;
 
 public class BudgetsActivity extends AppCompatActivity {
 
@@ -68,6 +65,7 @@ public class BudgetsActivity extends AppCompatActivity {
 
 
     public void deleteBudget(int position){
+        Log.d(">>>>>", "BudgetActivity" + position);
         ModelBudgets budget = new ModelBudgets(this.listBudgets.get(position).getId());
 
         Context context  = this;
