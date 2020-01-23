@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.breizhbudget.R;
-import com.example.breizhbudget.RepositoryBudget;
+import com.example.breizhbudget.Repository.RepositoryBudget;
 import com.example.breizhbudget.camera.OcrCaptureActivity;
 
 import java.util.List;

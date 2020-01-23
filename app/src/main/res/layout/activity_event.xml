@@ -8,7 +8,7 @@
     android:paddingTop="?attr/actionBarSize">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recyclerListEvent"
         android:layout_width="394dp"
         android:layout_height="518dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,4 +1,4 @@
-package com.example.breizhbudget;
+package com.example.breizhbudget.Repository;
 
 
 import android.app.ProgressDialog;
@@ -23,7 +23,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Classe qui utilise Firebase

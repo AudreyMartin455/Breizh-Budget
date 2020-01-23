@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.breizhbudget.R;
+import com.example.breizhbudget.Repository.RepositoryEvent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -32,48 +33,34 @@ public class EventActivity extends AppCompatActivity {
 
 
 
-    @BindView(R.id.add_button) Button addbutton;
-   // @BindView(R.id.button) Button ViewEvent;
+    @BindView(R.id.add_button)
+    Button addbutton;
+    @BindView(R.id.recyclerListEvent)
+    RecyclerView recyclerListEvent;
 
-    List<ModelEvent> modelEvents = new ArrayList<>();
-    RecyclerView mR;
     RecyclerView.LayoutManager layoutManager;
-
-    // firestore instance
-    FirebaseFirestore  db;
     EventAdapter eventAdapter;
+
     ProgressDialog progressDialog;
+
+    RepositoryEvent repository;
+    List<ModelEvent> modelEvents = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
+        //On récupère le repo pour les requêtes vers firebase
+        this.repository = RepositoryEvent.getInstance();
 
-        // init firestore
-        db = FirebaseFirestore.getInstance();
+        //On initialise la vue
+        this.recyclerListEvent.setHasFixedSize(true);
+        this.layoutManager = new LinearLayoutManager(this);
+        this.recyclerListEvent.setLayoutManager(layoutManager);
 
-        //initialize view
-        mR = findViewById(R.id.recycler_view);
-        mR.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        mR.setLayoutManager(layoutManager);
-
-
-        Button fab = (Button) findViewById(R.id.add_button);
-
-
-
-
-        progressDialog = new ProgressDialog(this);
-        showDta();
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(EventActivity.this, Event.class));
-            }
-        });
+        //On demande au repo de prendre tous les events
+        repository.getAllEvent(this);
     }
 
     @Override
@@ -83,43 +70,16 @@ public class EventActivity extends AppCompatActivity {
         return true;
     }
 
-    public  void showDta(){
-
-
-        progressDialog.setTitle("loading data ....");
-        progressDialog.show();
-
-        db.collection("Events")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        progressDialog.dismiss();
-                        for( DocumentSnapshot doc:task.getResult()){
-                            String id =doc.getString("id");
-                            String title=doc.getString("title");
-                            ArrayList <Participant> participantList = (ArrayList<Participant>) doc.get("participants");
-                            ModelEvent modelEvent =new ModelEvent(doc.getString("id"), doc.getString("title"), participantList);
-                            modelEvents.add(modelEvent);
-
-                        }
-
-                        for (int i = 0 ; i < modelEvents.size() ; i++)
-                            Log.d("value is" , modelEvents.get(i).toString());
-                        eventAdapter = new EventAdapter(EventActivity.this,modelEvents);
-                        mR.setAdapter(eventAdapter);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressDialog.dismiss();
-                Toast.makeText(EventActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
+    /**
+     * Appelée pour mettre à jour l'interface.
+     * @param modelEvents liste des evenements mise à jour par le repo
+     */
+    public  void showData(List<ModelEvent> modelEvents){
+        this.modelEvents = modelEvents;
+        for (int i = 0 ; i < modelEvents.size() ; i++)
+            Log.d("value is" , modelEvents.get(i).toString());
+        eventAdapter = new EventAdapter(EventActivity.this,modelEvents);
+        recyclerListEvent.setAdapter(eventAdapter);
     }
-
-
-
 
 }

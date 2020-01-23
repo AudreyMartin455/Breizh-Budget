@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.breizhbudget.RepositoryBudget;
+import com.example.breizhbudget.Repository.RepositoryBudget;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.breizhbudget.R;
-import com.example.breizhbudget.RepositoryBudget;
+import com.example.breizhbudget.Repository.RepositoryBudget;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
