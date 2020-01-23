@@ -50,14 +50,14 @@ public class ViewHolderTransaction extends RecyclerView.ViewHolder {
 
 
     // interface for click listener
-    private ViewHolder.ClickListener mclicklistener;
+    private ViewHolderTransaction.ClickListener mclicklistener;
     public interface ClickListener{
         void  onItemclick(View view, int position);
 
     }
 
 
-    public  void onClickListener(ViewHolder.ClickListener clickListener){
+    public  void onClickListener(ViewHolderTransaction.ClickListener clickListener){
         mclicklistener=clickListener;
     }
 }
