@@ -1,36 +1,26 @@
 package com.example.breizhbudget;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
-public class ViewEvent extends AppCompatActivity {
-
+public class ComptageActivity extends AppCompatActivity {
 
     List<ModelEvent> modelEvents = new ArrayList<ModelEvent>();
     ArrayList<Participant> participantList = new ArrayList<Participant>();
@@ -38,51 +28,29 @@ public class ViewEvent extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
 
     // firestore instance
-    FirebaseFirestore  db;
-    Viewitemadapter eventAdapter;
+    FirebaseFirestore db;
+    ComptageAdapter comptageAdapter;
     ProgressDialog progressDialog;
     String newString;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_event);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_participant);
-        Button buttonComptage = (Button) findViewById(R.id.buttonComptage);
-
+        setContentView(R.layout.activity_event_comptage);
 
         // init firestore
         db = FirebaseFirestore.getInstance();
 
         //initialize view
-        mR = findViewById(R.id.recycler_view_participant);
+        mR = findViewById(R.id.recycler_view_comptage);
         mR.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         mR.setLayoutManager(layoutManager);
-
 
         progressDialog = new ProgressDialog(this);
         Intent intent = getIntent();
         newString=intent.getStringExtra("title");
         showDta(newString);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ViewEvent.this,ParticipantActivity.class);
-                intent.putExtra("title", newString);
-                startActivity(intent);
-            }
-        });
-
-        buttonComptage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentComptage = new Intent(ViewEvent.this,ComptageActivity.class);
-                intentComptage.putExtra("title", newString);
-                startActivity(intentComptage);
-            }
-        });
-
     }
 
     @Override
@@ -91,7 +59,6 @@ public class ViewEvent extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.burgermenu, menu);
         return true;
     }
-
 
     public  void showDta(String newString1) {
 
@@ -116,18 +83,44 @@ public class ViewEvent extends AppCompatActivity {
                             if(modelEvents.get(i).getTitle().equals(newString)){
                                 if(modelEvents.get(i).getParticipants().size()>0){
                                     for (int j = 0; j < modelEvents.get(i).getParticipants().size(); j++){
-                                participantList.add(modelEvents.get(i).getParticipants().get(j));}
+                                        participantList.add(modelEvents.get(i).getParticipants().get(j));}
                                 }
                             }
 
                         }
-                       // Participant p= new Participant("zz555555555555","dd",14);
+                        // Participant p= new Participant("zz555555555555","dd",14);
                         //participantList.add(modelEvents.get(0).getParticipants().get(0));
 
-                        for (int i = 0; i < participantList.size(); i++)
+
+                        Hashtable tableParticipant = new Hashtable();
+                        String nomParticipant;
+                        int montantParticipant;
+                        ArrayList<String> listNomParticipant = new ArrayList<String>();
+                        for (int i = 0; i < participantList.size(); i++) {
+                            nomParticipant = participantList.get(i).getName();
+                            montantParticipant = participantList.get(i).getMontant();
+                            if (tableParticipant.containsKey(nomParticipant)) {
+                                montantParticipant +=  (int) tableParticipant.get(nomParticipant);
+                                tableParticipant.remove(nomParticipant);
+                                tableParticipant.put(nomParticipant, montantParticipant);
+                            } else {
+                                tableParticipant.put(nomParticipant, montantParticipant);
+                                listNomParticipant.add(nomParticipant);
+                            }
+                        }
+
+                        ArrayList<Participant> participantMontantList = new ArrayList<Participant>();
+                        for (int i = 0; i < listNomParticipant.size(); i++) {
+                            String nomActuel = listNomParticipant.get(i);
+                            int montantTotal = (int) tableParticipant.get(listNomParticipant.get(i));
+                            participantMontantList.add(new Participant(nomActuel, "",montantTotal));
+                        }
+
+                        for (int i = 0; i < participantMontantList.size(); i++){
                             //Log.d("value is efeffeffefefe", modelEvents.get(i).toString());
-                        eventAdapter = new Viewitemadapter(ViewEvent.this, participantList);
-                        mR.setAdapter(eventAdapter);
+                            comptageAdapter = new ComptageAdapter(ComptageActivity.this, participantMontantList);
+                            mR.setAdapter(comptageAdapter);
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
