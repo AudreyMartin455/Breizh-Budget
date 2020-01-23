@@ -33,6 +33,8 @@ public class BudgetsActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager budgetLayoutManager;
     private Repository repository;
 
+    private List<ModelBudgets> listBudgets;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,7 @@ public class BudgetsActivity extends AppCompatActivity {
     }
 
     public void updateBudgetsUI(List<ModelBudgets> budgetsList){
+        this.listBudgets = budgetsList;
         for (int i = 0 ; i < budgetsList.size() ; i++){
             budgetAdapter = new BudgetsAdapter(BudgetsActivity.this, budgetsList);
             recycler_budgets.setAdapter(budgetAdapter);
@@ -64,8 +67,9 @@ public class BudgetsActivity extends AppCompatActivity {
     }
 
 
-    public void deleteBudget(){
-        ModelBudgets budget = new ModelBudgets("pemQoY7DOw4q7OKl61qo");
+    public void deleteBudget(int position){
+        ModelBudgets budget = new ModelBudgets(this.listBudgets.get(position).getId());
+
         Context context  = this;
         new AlertDialog.Builder(this)
                 .setTitle("Supprimer un budget")
@@ -77,8 +81,6 @@ public class BudgetsActivity extends AppCompatActivity {
                         repository.deleteBudget(budget, context);
                     }})
                 .setNegativeButton("Non", null).show();
-
-
     }
 
     public void show1Budget(ModelBudgets budget){

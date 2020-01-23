@@ -364,6 +364,12 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 Log.d(TAG, "text data is being spoken! " + text.getValue());
                //TODO Essayer le traitement de texte ici
                 try{
+
+                    /*
+                    String str = "qwerty1qwerty2";
+                    str = str.replaceAll("[^0-9]+", " ");
+                    System.out.println(Arrays.asList(str.trim().split(" ")));
+                     */
                     //Integer.parseInt( text.getValue())
                     ModelTransaction transaction = new ModelTransaction(budget.getId(),"Scanner",false,200);
                     this.repository.addTransaction(this,transaction);

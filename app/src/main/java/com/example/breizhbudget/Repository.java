@@ -215,7 +215,7 @@ public class Repository {
                 });
     }
 
-    public void deleteTransaction(Context context, ModelTransaction transaction){
+    public void deleteTransaction(Context context, ModelTransaction transaction, String idBudget){
         db.collection("Transactions").document(transaction.getIdTransaction())
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -232,6 +232,7 @@ public class Repository {
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
+        this.getAllTransaction(context,idBudget);
     }
 
     /**************
