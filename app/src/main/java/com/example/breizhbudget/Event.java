@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -75,6 +76,9 @@ public class Event extends AppCompatActivity {
 
             }
         });
+
+        Intent intent = new Intent(Event.this, EventActivity.class);
+        startActivity(intent);
     }
 
 
