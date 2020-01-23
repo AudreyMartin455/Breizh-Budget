@@ -37,7 +37,7 @@ public class Accueil extends AppCompatActivity {
                 Intent intent = new Intent(Accueil.this, EventActivity.class);
                 startActivity(intent);
             }
-        });ls
+        });
 
         buttonBudget.setOnClickListener(new View.OnClickListener(){
 
