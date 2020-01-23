@@ -18,7 +18,7 @@ public class UpdateBudgetActivity extends AppCompatActivity {
 
     @BindView(R.id.intitule)
     EditText name;
-    @BindView(R.id.montantTransAdd)
+    @BindView(R.id.montantAddBudget)
     EditText montant;
     @BindView(R.id.ajouter)
     Button addButton;
