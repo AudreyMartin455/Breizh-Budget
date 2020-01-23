@@ -1,60 +1,90 @@
 package com.example.breizhbudget.ui.budgets;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
 
 import com.example.breizhbudget.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.example.breizhbudget.Repository;
+
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class BudgetsActivity extends AppCompatActivity {
 
-    @BindView(R.id.text_home)
-    TextView home;
     @BindView(R.id.recycler_budgets)
     RecyclerView recycler_budgets;
-    private RecyclerView.Adapter budgetAdapter;
+
+    private BudgetsAdapter budgetAdapter;
     private RecyclerView.LayoutManager budgetLayoutManager;
-    private List<Budget> budgetsList;
+    private Repository repository;
+
+    private List<ModelBudgets> listBudgets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budgets);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
+        ButterKnife.bind(this);
 
+        this.repository = Repository.getInstance();
 
-        // create the data
-        budgetsList = new ArrayList<>();
-        budgetsList.add(new Budget("Budget Nom 1",500));
-        budgetsList.add(new Budget("Budget Nom 2",600));
-
-        // handle the recycler view
-      /*  budgetAdapter = new BudgetsAdapter(this, budgetsList, this);
-        RecyclerView.LayoutManager budgetLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recycler_budgets.setHasFixedSize(true);
+        budgetLayoutManager = new LinearLayoutManager(this);
         recycler_budgets.setLayoutManager(budgetLayoutManager);
-        recycler_budgets.setAdapter(budgetAdapter);*/
 
+        repository.getAllBudget(this);
+
+
+    }
+
+    public void updateBudgetsUI(List<ModelBudgets> budgetsList){
+        this.listBudgets = budgetsList;
+        for (int i = 0 ; i < budgetsList.size() ; i++){
+            budgetAdapter = new BudgetsAdapter(BudgetsActivity.this, budgetsList);
+            recycler_budgets.setAdapter(budgetAdapter);
+        }
+    }
+
+    @OnClick(R.id.addBudget)
+    public void viewAddBudget(){
+        Intent intent = new Intent(BudgetsActivity.this, AddBudgetActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void deleteBudget(int position){
+        Log.d(">>>>>", "BudgetActivity" + position);
+        ModelBudgets budget = new ModelBudgets(this.listBudgets.get(position).getId());
+
+        Context context  = this;
+        new AlertDialog.Builder(this)
+                .setTitle("Supprimer un budget")
+                .setMessage("Voulez-vous vraiment supprimer ce budget ?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        repository.deleteBudget(budget, context);
+                    }})
+                .setNegativeButton("Non", null).show();
+    }
+
+    public void show1Budget(ModelBudgets budget){
+        Intent intent = new Intent(BudgetsActivity.this, OneBudgetActivity.class);
+        intent.putExtra("BUDGET",budget);
+        startActivity(intent);
     }
 
 }

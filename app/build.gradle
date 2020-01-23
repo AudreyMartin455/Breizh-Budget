@@ -40,6 +40,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'com.google.firebase:firebase-firestore:21.3.1'
+    implementation 'com.google.android.gms:play-services-vision:19.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.mobsandgeeks:android-saripaar:2.0.3'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     //recyclerview and cardview
     implementation "androidx.recyclerview:recyclerview:1.1.0"

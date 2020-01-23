@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Breizh Budget</string>
-    <string name="title_home">Truc</string>
+    <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_accueil">Accueil</string>
     <string name="title_activity_event">EventActivity</string>
+    <string name="title_ajout_participant">Ajouter Participants</string>
+    <string name="title_somme">Total</string>
+    <string name="title_ajout_dépense">Ajouter Dépense</string>
 </resources>
