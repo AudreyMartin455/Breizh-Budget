@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class RepositoryEvent {
 
@@ -155,13 +156,13 @@ public class RepositoryEvent {
         });
     }
 
-    public void getAmountPerPerson(Context context, String newString){
+    public void getAmountPerPerson(Context context, String title){
         ProgressDialog progressDialog = new ProgressDialog(context);
 
         this.participantList.clear();
         this.modelEvents.clear();
 
-        progressDialog.setTitle(newString);
+        progressDialog.setTitle(title);
         progressDialog.show();
 
 
@@ -175,42 +176,34 @@ public class RepositoryEvent {
 
                         modelEvents = task.getResult().toObjects(ModelEvent.class);
 
-
-
-                        for (int i = 0; i < modelEvents.size(); i++){
-                            if(modelEvents.get(i).getTitle().equals(newString)){
-                                if(modelEvents.get(i).getParticipants().size()>0){
-                                    for (int j = 0; j < modelEvents.get(i).getParticipants().size(); j++){
-                                        participantList.add(modelEvents.get(i).getParticipants().get(j));}
-                                }
-                            }
-
-                        }
-
-
-                        Hashtable tableParticipant = new Hashtable();
-                        String nomParticipant;
-                        int montantParticipant;
-                        ArrayList<String> listNomParticipant = new ArrayList<String>();
-                        for (int i = 0; i < participantList.size(); i++) {
-                            nomParticipant = participantList.get(i).getName();
-                            montantParticipant = participantList.get(i).getMontant();
-                            if (tableParticipant.containsKey(nomParticipant)) {
-                                montantParticipant +=  (int) tableParticipant.get(nomParticipant);
-                                tableParticipant.remove(nomParticipant);
-                                tableParticipant.put(nomParticipant, montantParticipant);
-                            } else {
-                                tableParticipant.put(nomParticipant, montantParticipant);
-                                listNomParticipant.add(nomParticipant);
-                            }
-                        }
-
+                        Hashtable<String,Integer> tableParticipant = new Hashtable<String,Integer>();
+                        int montantParticipant = 0;
                         ArrayList<Participant> participantMontantList = new ArrayList<Participant>();
-                        for (int i = 0; i < listNomParticipant.size(); i++) {
-                            String nomActuel = listNomParticipant.get(i);
-                            int montantTotal = (int) tableParticipant.get(listNomParticipant.get(i));
-                            participantMontantList.add(new Participant(nomActuel, "",montantTotal));
+
+                        //On récupère l'event
+                        for(ModelEvent event : modelEvents){
+                            if(event.getTitle().equals(title)){
+
+                                //On compte le montant de chaque participant
+                                for(Participant part : event.getParticipants()){
+                                    if(tableParticipant.get(part.getName())!=null){
+                                        montantParticipant = tableParticipant.get(part.getName());
+                                    }
+                                    tableParticipant.put(part.getName(),montantParticipant + part.getMontant());
+                                    montantParticipant = 0;
+                                }
+
+
+                                Set<String> keys = tableParticipant.keySet();
+
+                                //On met les résultats dans une liste pour afficher
+                                for(String namePart : keys){
+                                    participantMontantList.add(new Participant(namePart,"",tableParticipant.get(namePart)));
+                                }
+
+                            }
                         }
+                        
 
                         ComptageActivity ca = (ComptageActivity) context;
                         ca.updateInterface(participantMontantList);
