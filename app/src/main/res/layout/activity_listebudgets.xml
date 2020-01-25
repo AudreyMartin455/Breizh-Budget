@@ -188,13 +188,11 @@
         app:layout_constraintTop_toBottomOf="@+id/idTable"
         app:layout_constraintVertical_bias="0.503" />
 
-
     <Button
-        android:id="@+id/button"
-        android:layout_width="83dp"
+        android:id="@+id/retour"
+        android:layout_width="50dp"
         android:layout_height="40dp"
-        android:text="Retour"
+        android:drawableStart="@drawable/ic_keyboard_arrow_left_black_24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/nav_host_fragment" />
-
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

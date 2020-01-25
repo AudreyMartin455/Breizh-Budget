@@ -52,14 +52,11 @@ android:paddingTop="?attr/actionBarSize">
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
     <Button
         android:id="@+id/retour"
-        android:layout_width="83dp"
+        android:layout_width="50dp"
         android:layout_height="40dp"
-        android:text="Retour"
+        android:drawableStart="@drawable/ic_keyboard_arrow_left_black_24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/nav_host_fragment" />
-
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
