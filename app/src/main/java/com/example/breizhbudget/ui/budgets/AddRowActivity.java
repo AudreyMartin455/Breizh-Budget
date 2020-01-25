@@ -111,7 +111,9 @@ public class AddRowActivity extends AppCompatActivity implements Validator.Valid
                 Toast.makeText(getApplicationContext(), "Prochainement Disponible !", Toast.LENGTH_SHORT).show();
 
             case R.id.home: // Option pour le retour
-                NavUtils.navigateUpFromSameTask(this);
+                Intent intent = new Intent(AddRowActivity.this, OneBudgetActivity.class);
+                intent.putExtra("BUDGET",this.budget);
+                startActivity(intent);
                 return true;
         }
         return false;
