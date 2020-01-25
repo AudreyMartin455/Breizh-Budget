@@ -12,15 +12,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.event.ComptageActivity"></activity>
-        <activity android:name=".ui.event.ParticipantActivity" />
-        <activity android:name=".ui.event.ViewEvent" />
+        <activity
+            android:name=".ui.event.ComptageActivity"
+            android:parentActivityName=".ui.event.ViewEvent">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.event.ViewEvent" />
+        </activity>
+        <activity
+            android:name=".ui.event.ParticipantActivity"
+            android:parentActivityName=".ui.event.ViewEvent">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.event.ViewEvent" />
+        </activity>
+        <activity
+            android:name=".ui.event.ViewEvent"
+            android:parentActivityName=".ui.event.EventActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.event.EventActivity" />
+        </activity>
         <activity
             android:name=".ui.event.EventActivity"
-            android:label="@string/title_activity_event" />
+            android:label="@string/title_activity_event"
+            android:parentActivityName=".Accueil">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Accueil" />
+        </activity>
         <activity
             android:name=".ui.event.Event"
-            android:label="NewEvent" />
+            android:label="NewEvent"
+            android:parentActivityName=".ui.event.EventActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.event.EventActivity" />
+        </activity>
         <activity
             android:name=".Accueil"
             android:label="@string/title_activity_accueil"

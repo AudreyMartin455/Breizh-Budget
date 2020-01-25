@@ -22,6 +22,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -72,6 +73,13 @@ public class EventActivity extends AppCompatActivity {
     }
 
     /**
+     * Fonction pour afficher le bouton retour dans l'action bar
+     */
+    private void setupActionBar() {
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    /**
      * Fonction du burger menu
      * @param menu
      * @return
@@ -111,6 +119,10 @@ public class EventActivity extends AppCompatActivity {
 
             case R.id.burgerMenu_Contacts:
                 Toast.makeText(getApplicationContext(), "Prochainement Disponible !", Toast.LENGTH_SHORT).show();
+
+            case R.id.home: // Option pour le retour
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
         return false;
     }

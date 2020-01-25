@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,6 +57,13 @@ public class ComptageActivity extends AppCompatActivity {
         this.repository.getAmountPerPerson(this, newString);
     }
 
+    /**
+     * Fonction pour afficher le bouton retour dans l'action bar
+     */
+    private void setupActionBar() {
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -87,6 +95,10 @@ public class ComptageActivity extends AppCompatActivity {
 
             case R.id.burgerMenu_Contacts:
                 Toast.makeText(getApplicationContext(),"Prochainement Disponible !", Toast.LENGTH_SHORT).show();
+
+            case R.id.home: // Option pour le retour
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
