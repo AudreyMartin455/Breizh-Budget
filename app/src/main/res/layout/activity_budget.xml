@@ -8,14 +8,6 @@
     android:paddingTop="?attr/actionBarSize">
 
 
-    <Button
-        android:id="@+id/retour"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:drawableStart="@drawable/ic_keyboard_arrow_left_black_24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <TextView
 
         android:id="@+id/total_budget"
