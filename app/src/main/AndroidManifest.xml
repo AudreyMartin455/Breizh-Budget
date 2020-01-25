@@ -61,22 +61,46 @@
         </activity>
         <activity
             android:name=".ui.budgets.BudgetsActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:parentActivityName=".Accueil">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Accueil" />
+        </activity>
         <activity
             android:name=".ui.budgets.AddBudgetActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:parentActivityName=".ui.budgets.BudgetsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.budgets.BudgetsActivity" />
+        </activity>
         <activity
             android:name=".ui.budgets.OneBudgetActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:parentActivityName=".ui.budgets.BudgetsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.budgets.BudgetsActivity" />
+        </activity>
         <activity
             android:name=".ui.budgets.AddRowActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:parentActivityName=".ui.budgets.OneBudgetActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.budgets.OneBudgetActivity"/>
+        </activity>
         <activity
             android:name=".camera.OcrCaptureActivity"
             android:label="@string/app_name"></activity>
         <activity
             android:name=".ui.budgets.UpdateBudgetActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:parentActivityName=".ui.budgets.OneBudgetActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.budgets.OneBudgetActivity"/></activity>
     </application>
 
 </manifest>
