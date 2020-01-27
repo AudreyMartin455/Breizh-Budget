@@ -1,28 +1,25 @@
 package com.example.breizhbudget.ui.event;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.breizhbudget.R;
 import com.example.breizhbudget.Repository.RepositoryEvent;
 import com.example.breizhbudget.ui.budgets.BudgetsActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +43,7 @@ public class ViewEvent extends AppCompatActivity {
     Viewitemadapter eventAdapter;
     RecyclerView.LayoutManager layoutManager;
     String title;
+    List<Participant> modelEvents = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,24 +57,24 @@ public class ViewEvent extends AppCompatActivity {
         this.mR.setLayoutManager(layoutManager);
 
         Intent intent = getIntent();
-        title=intent.getStringExtra("title");
+        title = intent.getStringExtra("title");
 
         this.repository = RepositoryEvent.getInstance();
-        this.repository.getAllParticipant(this,title);
+        this.repository.getAllParticipant(this, title);
 
         buttonComptage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentComptage = new Intent(ViewEvent.this,ComptageActivity.class);
+                Intent intentComptage = new Intent(ViewEvent.this, ComptageActivity.class);
                 intentComptage.putExtra("title", title);
                 startActivity(intentComptage);
             }
         });
 
-        buttonAddPart.setOnClickListener(new View.OnClickListener(){
+        buttonAddPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentParticipant = new Intent(ViewEvent.this,ParticipantActivity.class);
+                Intent intentParticipant = new Intent(ViewEvent.this, ParticipantActivity.class);
                 intentParticipant.putExtra("title", title);
                 startActivity(intentParticipant);
             }
@@ -92,6 +90,7 @@ public class ViewEvent extends AppCompatActivity {
 
     /**
      * Fonction du burger menu
+     *
      * @param menu
      * @return
      */
@@ -138,11 +137,32 @@ public class ViewEvent extends AppCompatActivity {
         return false;
     }
 
-    public void updateInterface(List<Participant> participantList){
+    public void updateInterface(List<Participant> participantList) {
         for (int i = 0; i < participantList.size(); i++)
             //Log.d("value is efeffeffefefe", modelEvents.get(i).toString());
             eventAdapter = new Viewitemadapter(ViewEvent.this, participantList);
+        this.modelEvents = participantList;
         mR.setAdapter(eventAdapter);
+    }
+
+    public void deleteParticipantEvent(int position) {
+        Participant participant = new Participant(this.modelEvents.get(position).getName(), this.title);
+
+        Log.d("MonActivity", "vienw event " + participant);
+
+        Context context = this;
+        new AlertDialog.Builder(this)
+                .setTitle("Supprimer un participant")
+                .setMessage("Voulez-vous vraiment le supprimer ?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        repository.deleteParticipantEvent(context, participant);
+                    }
+                })
+                .setNegativeButton("Non", null).show();
+
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.breizhbudget.ui.event;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import java.util.List;
 public class ViewHolderParticipant extends RecyclerView.ViewHolder {
 
     TextView mName,mMontant;
+    ImageButton deleteButton;
     List<Participant> mparticipantList;
     View mView;
 
@@ -33,6 +35,17 @@ public class ViewHolderParticipant extends RecyclerView.ViewHolder {
 
         mName= itemView.findViewById(R.id.textViewName);
         mMontant = itemView.findViewById(R.id.textViewMonatnt);
+        deleteButton = itemView.findViewById(R.id.layout_list_delete);
+
+        deleteButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                ViewEvent ba = (ViewEvent) v.getContext();
+                ba.deleteParticipantEvent(getAdapterPosition());
+
+            }
+        });
 
 
     }
