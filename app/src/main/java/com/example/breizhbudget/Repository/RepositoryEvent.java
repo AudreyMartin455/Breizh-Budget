@@ -113,7 +113,7 @@ public class RepositoryEvent {
         });
     }
 
-    public void getAllParticipant(Context context,String titleEvent, boolean tricount){
+    public void getAllParticipant(Context context,String titleEvent){
        ProgressDialog progressDialog = new ProgressDialog(context);
        this.participantList.clear();
        this.modelEvents.clear();
@@ -144,13 +144,8 @@ public class RepositoryEvent {
                             }
 
                         }
-                        if(!tricount){
-                            ViewEvent ve = (ViewEvent) context;
-                            ve.updateInterface(participantList);
-                        }else{
-                            TricountActivity ta = (TricountActivity) context;
-                            ta.tricount(participantList);
-                        }
+                         ViewEvent ve = (ViewEvent) context;
+                         ve.updateInterface(participantList);
 
 
 
@@ -165,7 +160,7 @@ public class RepositoryEvent {
         });
     }
 
-    public void getAmountPerPerson(Context context, String title){
+    public void getAmountPerPerson(Context context, String title, boolean tricount){
         ProgressDialog progressDialog = new ProgressDialog(context);
 
         this.participantList.clear();
@@ -213,9 +208,14 @@ public class RepositoryEvent {
                             }
                         }
                         
+                        if(!tricount){
+                            ComptageActivity ca = (ComptageActivity) context;
+                            ca.updateInterface(participantMontantList);
+                        }else{
+                            TricountActivity ta = (TricountActivity) context;
+                            ta.tricount(participantMontantList);
+                        }
 
-                        ComptageActivity ca = (ComptageActivity) context;
-                        ca.updateInterface(participantMontantList);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
