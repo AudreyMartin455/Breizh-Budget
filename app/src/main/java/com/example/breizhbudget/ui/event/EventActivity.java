@@ -1,6 +1,9 @@
 package com.example.breizhbudget.ui.event;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -134,8 +137,6 @@ public class EventActivity extends AppCompatActivity {
          */
     public  void showData(List<ModelEvent> modelEvents){
         this.modelEvents = modelEvents;
-        for (int i = 0 ; i < modelEvents.size() ; i++)
-            Log.d("value is" , modelEvents.get(i).toString());
         eventAdapter = new EventAdapter(EventActivity.this,modelEvents);
         recyclerListEvent.setAdapter(eventAdapter);
     }
@@ -149,4 +150,22 @@ public class EventActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void deleteEvent(int position){
+        ModelEvent event = new ModelEvent(this.modelEvents.get(position).getId());
+
+        Context context  = this;
+        new AlertDialog.Builder(this)
+                .setTitle("Supprimer un évènement")
+                .setMessage("Voulez-vous vraiment supprimer cet évènement ?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        repository.deleteEvent(context,event);
+                    }})
+                .setNegativeButton("Non", null).show();
+
+    }
 }
+
+
