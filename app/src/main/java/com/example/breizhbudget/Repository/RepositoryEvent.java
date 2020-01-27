@@ -17,6 +17,7 @@ import com.example.breizhbudget.ui.event.EventAdapter;
 import com.example.breizhbudget.ui.event.ModelEvent;
 import com.example.breizhbudget.ui.event.Participant;
 import com.example.breizhbudget.ui.event.ParticipantActivity;
+import com.example.breizhbudget.ui.event.TricountActivity;
 import com.example.breizhbudget.ui.event.ViewEvent;
 import com.example.breizhbudget.ui.event.ViewHolder;
 import com.example.breizhbudget.ui.event.Viewitemadapter;
@@ -112,12 +113,12 @@ public class RepositoryEvent {
         });
     }
 
-    public void getAllParticipant(Context context,String newString){
+    public void getAllParticipant(Context context,String titleEvent, boolean tricount){
        ProgressDialog progressDialog = new ProgressDialog(context);
        this.participantList.clear();
        this.modelEvents.clear();
 
-        progressDialog.setTitle(newString);
+        progressDialog.setTitle(titleEvent);
         progressDialog.show();
 
 
@@ -133,17 +134,24 @@ public class RepositoryEvent {
 
 
 
-                        for (int i = 0; i < modelEvents.size(); i++){
-                            if(modelEvents.get(i).getTitle().equals(newString)){
-                                if(modelEvents.get(i).getParticipants().size()>0){
-                                    for (int j = 0; j < modelEvents.get(i).getParticipants().size(); j++){
-                                        participantList.add(modelEvents.get(i).getParticipants().get(j));}
+                        for (ModelEvent event : modelEvents){
+                            if(event.getTitle().equals(titleEvent)){
+                                if(event.getParticipants().size()>0){
+                                    for (Participant participant : event.getParticipants()){
+                                        participantList.add(participant);
+                                    }
                                 }
                             }
 
                         }
-                       ViewEvent ve = (ViewEvent) context;
-                        ve.updateInterface(participantList);
+                        if(!tricount){
+                            ViewEvent ve = (ViewEvent) context;
+                            ve.updateInterface(participantList);
+                        }else{
+                            TricountActivity ta = (TricountActivity) context;
+                            ta.tricount(participantList);
+                        }
+
 
 
                     }
@@ -282,4 +290,5 @@ public class RepositoryEvent {
                 });
 
     }
+
 }
