@@ -62,7 +62,7 @@ public class ViewEvent extends AppCompatActivity {
         title=intent.getStringExtra("title");
 
         this.repository = RepositoryEvent.getInstance();
-        this.repository.getAllParticipant(this,title);
+        this.repository.getAllParticipant(this,title,false);
 
         buttonComptage.setOnClickListener(new View.OnClickListener() {
             @Override
