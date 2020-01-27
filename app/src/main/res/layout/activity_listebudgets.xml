@@ -64,13 +64,14 @@
                 android:text="Voir mon budget"
                 app:layout_constraintEnd_toStartOf="@+id/button4"
                 tools:layout_editor_absoluteY="555dp" />
+
             <Button
                 android:id="@+id/delete_budget1"
                 android:layout_width="25dp"
                 android:layout_height="match_parent"
                 android:layout_margin="0dp"
                 android:layout_weight="1"
-                android:drawableBottom="@drawable/ic_delete_black_24dp"/>
+                android:drawableBottom="@drawable/ic_recycle_bin_full" />
 
         </TableRow>
 
@@ -114,7 +115,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="0dp"
                 android:layout_weight="1"
-                android:drawableBottom="@drawable/ic_delete_black_24dp"/>
+                android:drawableBottom="@drawable/ic_recycle_bin_full" />
 
         </TableRow>
 
@@ -158,7 +159,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="0dp"
                 android:layout_weight="1"
-                android:drawableBottom="@drawable/ic_delete_black_24dp"/>
+                android:drawableBottom="@drawable/ic_recycle_bin_full" />
 
         </TableRow>
     </TableLayout>
