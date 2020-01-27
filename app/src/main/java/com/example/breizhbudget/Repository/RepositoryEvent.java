@@ -22,6 +22,7 @@ import com.example.breizhbudget.ui.event.ViewHolder;
 import com.example.breizhbudget.ui.event.Viewitemadapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -259,5 +260,26 @@ public class RepositoryEvent {
 
             }
         });
+    }
+
+    public void deleteEvent(Context context, ModelEvent event){
+        db.collection("Events").document(event.getId())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context,"Event deleted",Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                        getAllEvent(context);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context,"Error, Event not deleted",Toast.LENGTH_SHORT).show();
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+
     }
 }

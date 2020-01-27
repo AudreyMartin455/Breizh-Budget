@@ -11,6 +11,10 @@ public class ModelEvent {
     public ModelEvent() {
     }
 
+    public ModelEvent(String id){
+        this.id = id;
+    }
+
     public ModelEvent(String id, String title, ArrayList<Participant> participants) {
         this.id = id;
         this.title = title;

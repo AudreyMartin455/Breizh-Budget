@@ -1,6 +1,8 @@
 package com.example.breizhbudget.ui.event;
 
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     TextView mTitleEvent;
     List<Participant> mparticipantList;
+    ImageButton deleteButton;
     View mView;
 
     public ViewHolder(@NonNull View itemView) {
@@ -32,7 +35,17 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         // initialize views with Eventmodel layout
 
         mTitleEvent= itemView.findViewById(R.id.textView);
+        deleteButton = itemView.findViewById(R.id.layout_list_delete);
 
+        deleteButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                EventActivity ba = (EventActivity) v.getContext();
+                ba.deleteEvent(getAdapterPosition());
+
+            }
+        });
 
     }
 
