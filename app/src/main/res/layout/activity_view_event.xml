@@ -16,25 +16,36 @@
 
     <Button
         android:id="@+id/add_participant"
-        android:layout_width="122dp"
-        android:layout_height="73dp"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
         android:text="Ajouter une dépense"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintHorizontal_bias="0.91"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.94" />
 
     <Button
         android:id="@+id/buttonComptage"
-        android:layout_width="122dp"
-        android:layout_height="73dp"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
         android:text="Compte"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/add_participant"
-        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
+
+    <Button
+        android:id="@+id/tri_count"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:text="Tri Count"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/add_participant"
+        app:layout_constraintStart_toEndOf="@+id/buttonComptage"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.94" />
 
