@@ -112,10 +112,8 @@ public class BudgetsActivity extends AppCompatActivity {
     /**Mettre à jour l'interface**/
     public void updateBudgetsUI(List<ModelBudgets> budgetsList){
         this.listBudgets = budgetsList;
-        for (int i = 0 ; i < budgetsList.size() ; i++){
-            budgetAdapter = new BudgetsAdapter(BudgetsActivity.this, budgetsList);
-            recycler_budgets.setAdapter(budgetAdapter);
-        }
+        this.budgetAdapter = new BudgetsAdapter(BudgetsActivity.this, budgetsList);
+        this.recycler_budgets.setAdapter(budgetAdapter);
     }
 
     @OnClick(R.id.addBudget)

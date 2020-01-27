@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.breizhbudget.R;
 import com.example.breizhbudget.Repository.RepositoryBudget;
 import com.example.breizhbudget.camera.OcrCaptureActivity;
-import com.example.breizhbudget.ui.event.Event;
 import com.example.breizhbudget.ui.event.EventActivity;
 
 import java.util.List;
@@ -53,8 +52,8 @@ public class OneBudgetActivity extends AppCompatActivity {
 
 
         this.budget = getIntent().getParcelableExtra("BUDGET");
-        this.viewMontant.setText(budget.getMontant() + " €");
-        this.viewTitle.setText(budget.getName());
+        this.viewMontant.setText(this.budget.getMontant() + " €");
+        this.viewTitle.setText(this.budget.getName());
 
         recycler_row.setHasFixedSize(true);
         budgetLayoutManager = new LinearLayoutManager(this);
@@ -124,16 +123,15 @@ public class OneBudgetActivity extends AppCompatActivity {
         this.listTransactions = transList;
 
         long total = this.budget.getMontant();
-        for (int i = 0 ; i < transList.size() ; i++){
-            if(transList.get(i).isSign()){
-                total = total + transList.get(i).getMontantTransaction();
+        for (ModelTransaction trans: transList){
+            if(trans.isSign()){
+                total = total + trans.getMontantTransaction();
             }else{
-                total = total - transList.get(i).getMontantTransaction();
+                total = total - trans.getMontantTransaction();
             }
-
-            transactionAdapter = new TransactionAdapter(OneBudgetActivity.this, transList);
-            recycler_row.setAdapter(transactionAdapter);
         }
+        transactionAdapter = new TransactionAdapter(OneBudgetActivity.this, transList);
+        recycler_row.setAdapter(transactionAdapter);
         this.totalBudget.setText(total + " €");
     }
 
@@ -148,6 +146,7 @@ public class OneBudgetActivity extends AppCompatActivity {
     public void addTransactionScan(){
         Intent intent = new Intent(OneBudgetActivity.this, OcrCaptureActivity.class);
         intent.putExtra("BUDGET",this.budget);
+        intent.putExtra("OPTION","budget");
         startActivity(intent);
     }
 

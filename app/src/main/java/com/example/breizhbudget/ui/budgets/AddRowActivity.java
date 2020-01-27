@@ -2,6 +2,7 @@ package com.example.breizhbudget.ui.budgets;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -111,6 +112,7 @@ public class AddRowActivity extends AppCompatActivity implements Validator.Valid
                 Toast.makeText(getApplicationContext(), "Prochainement Disponible !", Toast.LENGTH_SHORT).show();
 
             case R.id.home: // Option pour le retour
+                Log.d(">>>>>>><", this.budget.getMontant()+" EUROS");
                 Intent intent = new Intent(AddRowActivity.this, OneBudgetActivity.class);
                 intent.putExtra("BUDGET",this.budget);
                 startActivity(intent);

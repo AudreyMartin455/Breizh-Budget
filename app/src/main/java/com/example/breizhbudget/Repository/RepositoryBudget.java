@@ -115,6 +115,7 @@ public class RepositoryBudget {
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(context,"Budget deleted",Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                        getAllBudget(context);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -214,6 +215,8 @@ public class RepositoryBudget {
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(context,"Budget deleted",Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "DocumentSnapshot successfully deleted!");
+
+                        getAllTransaction(context,idBudget);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -223,7 +226,7 @@ public class RepositoryBudget {
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
-        this.getAllTransaction(context,idBudget);
+
     }
 
 }
