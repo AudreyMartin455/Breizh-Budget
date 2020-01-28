@@ -13,10 +13,14 @@ import com.example.breizhbudget.Repository.RepositoryEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.IntStream;
 
 import butterknife.ButterKnife;
@@ -24,6 +28,7 @@ import butterknife.ButterKnife;
 public class TricountActivity  extends AppCompatActivity {
 
     private ModelEvent event;
+    private String titleEvent;
     private List<Participant> participants;
     private RepositoryEvent repository;
 
@@ -35,14 +40,16 @@ public class TricountActivity  extends AppCompatActivity {
         this.repository = RepositoryEvent.getInstance();
 
         Intent intent = getIntent();
-        ModelEvent event = new ModelEvent(intent.getStringExtra("title"));
-
-        this.repository.getAmountPerPerson(this,event.getTitle(),true);
+        this.titleEvent = intent.getStringExtra("title");
+        Log.d(">>>>>>>>>><<<", this.titleEvent);
+        this.repository.getAmountPerPerson(this,this.titleEvent,true);
 
     }
 
     public void tricount(List<Participant> participantsList){
+
        if(participantsList.size()>0){
+
            List<String> peoples = this.getAllNames(participantsList);
            List<Integer> valuesPaid = this.getMontants(participantsList);
            HashMap<String,Integer> peopleValues = this.toHashMap(participantsList);
@@ -52,10 +59,39 @@ public class TricountActivity  extends AppCompatActivity {
 
            peopleValues = this.sortHashMapByValues(peopleValues);
 
+
            for (Map.Entry mapentry : peopleValues.entrySet()) {
-               Log.d(">>>>>>","clé: "+mapentry.getKey() + " | valeur: " + mapentry.getValue());
+               peoples.add(mapentry.getKey().toString());
+               peopleValues.replace(mapentry.getKey().toString(), (Integer) mapentry.getValue()-mean);
            }
-           // pour tous les noms dans la Hashmap, on leur enlève mean.
+
+           int i = 0;
+           int j = peopleValues.size()-1;
+           int debt;
+
+           while (i < j){
+               int valuei = peopleValues.get(peoples.get(i));
+               int valuej = peopleValues.get(peoples.get(j));
+               debt = Math.min(-(valuei),valuej);
+               valuei += debt;
+               valuej -= debt;
+               peopleValues.replace(peoples.get(i),valuei);
+               peopleValues.replace(peoples.get(j),valuej);
+
+
+               Log.d(">>>>>>>>>>>>",peoples.get(i) + " owes " + peoples.get(j) + " " + debt + "EUROS");
+
+
+               if(peopleValues.get(peoples.get(i)) == 0){
+                    i++;
+               }
+
+               if(peopleValues.get(peoples.get(j)) == 0){
+                   j--;
+               }
+           }
+
+
 
        }
 
@@ -98,32 +134,48 @@ public class TricountActivity  extends AppCompatActivity {
         return sum;
     }
 
-    public HashMap<String, Integer> sortHashMapByValues(HashMap<String, Integer> passedMap) {
-        List<String> mapKeys = new ArrayList<>(passedMap.keySet());
-        List<Integer> mapValues = new ArrayList<>(passedMap.values());
-        Collections.sort(mapValues);
-        Collections.sort(mapKeys);
+    public HashMap<String,Integer> sortHashMapByValues(HashMap<String, Integer> passedMap) {
+        TreeMap<String, Integer> sorted = new TreeMap<>(passedMap);
+        Set<Map.Entry<String, Integer>> mappings = sorted.entrySet();
 
-        HashMap<String, Integer> sortedMap =
-                new HashMap<>();
+        Set<Map.Entry<String, Integer>> entries = passedMap.entrySet();
 
-        Iterator<Integer> valueIt = mapValues.iterator();
-        while (valueIt.hasNext()) {
-            Integer val = valueIt.next();
-            Iterator<String> keyIt = mapKeys.iterator();
+       /* System.out.println("HashMap after sorting by keys in ascending order ");
+        for(Map.Entry<String, Integer> mapping : mappings){
+            System.out.println(mapping.getKey() + " ==> " + mapping.getValue());
+        }*/
 
-            while (keyIt.hasNext()) {
-                String key = keyIt.next();
-                Integer comp1 = passedMap.get(key);
-                Integer comp2 = val;
+        Comparator<Map.Entry<String, Integer>> valueComparator = new Comparator<Map.Entry<String,Integer>>() {
 
-                if (comp1.equals(comp2)) {
-                    keyIt.remove();
-                    sortedMap.put(key, val);
-                    break;
-                }
+            @Override
+            public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
+                Integer v1 = e1.getValue();
+                Integer v2 = e2.getValue();
+                return v1.compareTo(v2);
             }
+        };
+
+        // Sort method needs a List, so let's first convert Set to List in Java
+        List<Map.Entry<String, Integer>> listOfEntries = new ArrayList<Map.Entry<String, Integer>>(entries);
+
+        // sorting HashMap by values using comparator
+        Collections.sort(listOfEntries, valueComparator);
+
+        LinkedHashMap<String, Integer> sortedByValue = new LinkedHashMap<String, Integer>(listOfEntries.size());
+
+        // copying entries from List to Map
+        for(Map.Entry<String, Integer> entry : listOfEntries){
+            sortedByValue.put(entry.getKey(), entry.getValue());
         }
-        return sortedMap;
+
+        Set<Map.Entry<String, Integer>> entrySetSortedByValue = sortedByValue.entrySet();
+
+        passedMap.clear();
+        for(Map.Entry<String, Integer> mapping : entrySetSortedByValue){
+            Log.d(">>>>>>>>><",mapping.getKey() + " ==> " + mapping.getValue());
+            passedMap.put(mapping.getKey(),mapping.getValue());
+        }
+
+        return passedMap;
     }
 }
