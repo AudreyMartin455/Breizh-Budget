@@ -23,5 +23,16 @@
         android:gravity="center"
         android:text="textViewMonatnt" />
 
+    <ImageButton
+        android:id="@+id/layout_list_delete"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
+        android:contentDescription="Delete"
+        android:src="@drawable/ic_recycle_bin_full" />
+
 
 </LinearLayout>

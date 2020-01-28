@@ -2,10 +2,19 @@ package com.example.breizhbudget.ui.event;
 
 public class Participant {
 
+    String namedoc;
+
+
     String Name, Description;
     int Montant;
 
-    public Participant(){}
+    public Participant() {
+    }
+
+    public Participant(String name, String namedoc) {
+        this.Name = name;
+        this.namedoc = namedoc;
+    }
 
     public Participant(String name, String description, int montant) {
         Name = name;
@@ -36,4 +45,6 @@ public class Participant {
     public int getMontant() {
         return Montant;
     }
+
+    public String getNamedoc() { return namedoc; }
 }

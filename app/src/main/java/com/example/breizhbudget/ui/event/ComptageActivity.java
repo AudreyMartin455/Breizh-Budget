@@ -54,7 +54,7 @@ public class ComptageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         newString=intent.getStringExtra("title");
-        this.repository.getAmountPerPerson(this, newString);
+        this.repository.getAmountPerPerson(this, newString, false);
     }
 
     /**
