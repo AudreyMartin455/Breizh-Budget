@@ -18,11 +18,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -137,6 +140,7 @@ public class RepositoryEvent {
                             }
 
                         }
+
                         ViewEvent ve = (ViewEvent) context;
                         ve.updateInterface(participantList);
 
@@ -299,12 +303,13 @@ public class RepositoryEvent {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         progressDialog.dismiss();
 
-
+                        ModelEvent e = new ModelEvent();
                         modelEvents = task.getResult().toObjects(ModelEvent.class);
 
 
                         for (int i = 0; i < modelEvents.size(); i++) {
                             if (modelEvents.get(i).getTitle().equals(participant.getNamedoc())) {
+                                e=modelEvents.get(i);
                                 if (modelEvents.get(i).getParticipants().size() > 0) {
                                     for (int j = 0; j < modelEvents.get(i).getParticipants().size(); j++) {
 
@@ -320,6 +325,7 @@ public class RepositoryEvent {
                                 newparticipantList.add(c);
                             }
                         }
+
 
                         db.collection("Events").document(participant.getName()).update("participants", newparticipantList);
 
