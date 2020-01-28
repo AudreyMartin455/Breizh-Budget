@@ -76,6 +76,14 @@
                 android:value=".ui.budgets.BudgetsActivity" />
         </activity>
         <activity
+            android:name=".ui.event.TricountActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".ui.event.ViewEvent">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.event.ViewEvent" />
+        </activity>
+        <activity
             android:name=".ui.budgets.OneBudgetActivity"
             android:label="@string/app_name"
             android:parentActivityName=".ui.budgets.BudgetsActivity">

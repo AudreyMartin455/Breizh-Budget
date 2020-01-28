@@ -12,6 +12,7 @@ import com.example.breizhbudget.ui.event.EventActivity;
 import com.example.breizhbudget.ui.event.ModelEvent;
 import com.example.breizhbudget.ui.event.Participant;
 import com.example.breizhbudget.ui.event.ParticipantActivity;
+import com.example.breizhbudget.ui.event.TricountActivity;
 import com.example.breizhbudget.ui.event.ViewEvent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -106,12 +107,12 @@ public class RepositoryEvent {
         });
     }
 
-    public void getAllParticipant(Context context, String newString) {
+    public void getAllParticipant(Context context, String titleEvent) {
         ProgressDialog progressDialog = new ProgressDialog(context);
         this.participantList.clear();
         this.modelEvents.clear();
 
-        progressDialog.setTitle(newString);
+        progressDialog.setTitle(titleEvent);
         progressDialog.show();
 
 
@@ -126,11 +127,11 @@ public class RepositoryEvent {
                         modelEvents = task.getResult().toObjects(ModelEvent.class);
 
 
-                        for (int i = 0; i < modelEvents.size(); i++) {
-                            if (modelEvents.get(i).getTitle().equals(newString)) {
-                                if (modelEvents.get(i).getParticipants().size() > 0) {
-                                    for (int j = 0; j < modelEvents.get(i).getParticipants().size(); j++) {
-                                        participantList.add(modelEvents.get(i).getParticipants().get(j));
+                        for (ModelEvent event : modelEvents) {
+                            if (event.getTitle().equals(titleEvent)) {
+                                if (event.getParticipants().size() > 0) {
+                                    for (Participant participant : event.getParticipants()) {
+                                        participantList.add(participant);
                                     }
                                 }
                             }
@@ -151,7 +152,7 @@ public class RepositoryEvent {
         });
     }
 
-    public void getAmountPerPerson(Context context, String title) {
+    public void getAmountPerPerson(Context context, String title, boolean tricount) {
         ProgressDialog progressDialog = new ProgressDialog(context);
 
         this.participantList.clear();
@@ -199,9 +200,14 @@ public class RepositoryEvent {
                             }
                         }
 
+                        if (!tricount) {
+                            ComptageActivity ca = (ComptageActivity) context;
+                            ca.updateInterface(participantMontantList);
+                        } else {
+                            TricountActivity ta = (TricountActivity) context;
+                            ta.tricount(participantMontantList);
+                        }
 
-                        ComptageActivity ca = (ComptageActivity) context;
-                        ca.updateInterface(participantMontantList);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

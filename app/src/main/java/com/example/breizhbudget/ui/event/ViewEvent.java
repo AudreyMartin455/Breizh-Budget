@@ -37,6 +37,8 @@ public class ViewEvent extends AppCompatActivity {
     Button buttonComptage;
     @BindView(R.id.add_participant)
     Button buttonAddPart;
+    @BindView(R.id.tri_count)
+    Button buttonTricount;
 
     RepositoryEvent repository;
 
@@ -78,6 +80,15 @@ public class ViewEvent extends AppCompatActivity {
                 intentParticipant.putExtra("title", title);
                 startActivity(intentParticipant);
             }
+        });
+
+        buttonTricount.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intentParticipant = new Intent(ViewEvent.this, TricountActivity.class);
+                        intentParticipant.putExtra("title", title);
+                        startActivity(intentParticipant);
+                    }
         });
     }
 
