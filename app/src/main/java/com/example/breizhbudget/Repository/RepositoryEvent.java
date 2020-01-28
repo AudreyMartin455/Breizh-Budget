@@ -321,7 +321,7 @@ public class RepositoryEvent {
                             }
                         }
 
-                        db.collection("Events").document(participant.getName()).update("participants", participantList);
+                        db.collection("Events").document(participant.getName()).update("participants", newparticipantList);
 
                         ViewEvent ve = (ViewEvent) context;
                         ve.updateInterface(newparticipantList);
