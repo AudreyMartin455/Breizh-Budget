@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,13 +24,15 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.IntStream;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TricountActivity  extends AppCompatActivity {
 
-    private ModelEvent event;
+    @BindView(R.id.listeTricount)
+    TextView listeTricount;
+
     private String titleEvent;
-    private List<Participant> participants;
     private RepositoryEvent repository;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,7 @@ public class TricountActivity  extends AppCompatActivity {
 
         Intent intent = getIntent();
         this.titleEvent = intent.getStringExtra("title");
-        Log.d(">>>>>>>>>><<<", this.titleEvent);
+
         this.repository.getAmountPerPerson(this,this.titleEvent,true);
 
     }
@@ -50,7 +53,8 @@ public class TricountActivity  extends AppCompatActivity {
 
        if(participantsList.size()>0){
 
-           List<String> peoples = this.getAllNames(participantsList);
+           String result = "";
+           List<String> peoples = new ArrayList<>();
            List<Integer> valuesPaid = this.getMontants(participantsList);
            HashMap<String,Integer> peopleValues = this.toHashMap(participantsList);
 
@@ -78,8 +82,8 @@ public class TricountActivity  extends AppCompatActivity {
                peopleValues.replace(peoples.get(i),valuei);
                peopleValues.replace(peoples.get(j),valuej);
 
-
-               Log.d(">>>>>>>>>>>>",peoples.get(i) + " owes " + peoples.get(j) + " " + debt + "EUROS");
+               result += peoples.get(i) + " doit " + debt + " € " + " à " +  peoples.get(j) + "\n";
+               Log.d(">>>>>>>>>>>>",peoples.get(i) + " doit " + debt + "EUROS" + " à " +  peoples.get(j));
 
 
                if(peopleValues.get(peoples.get(i)) == 0){
@@ -91,7 +95,7 @@ public class TricountActivity  extends AppCompatActivity {
                }
            }
 
-
+            this.updateUI(result);
 
        }
 
@@ -107,15 +111,6 @@ public class TricountActivity  extends AppCompatActivity {
         return  peopleValues;
     }
 
-
-    public List<String> getAllNames(List<Participant> participantsList){
-        List<String> names = new ArrayList<>();
-        for(Participant p : participantsList){
-            names.add(p.getName());
-        }
-
-        return names;
-    }
 
     public List<Integer> getMontants(List<Participant> participantsList){
         List<Integer> montants = new ArrayList<>();
@@ -139,11 +134,6 @@ public class TricountActivity  extends AppCompatActivity {
         Set<Map.Entry<String, Integer>> mappings = sorted.entrySet();
 
         Set<Map.Entry<String, Integer>> entries = passedMap.entrySet();
-
-       /* System.out.println("HashMap after sorting by keys in ascending order ");
-        for(Map.Entry<String, Integer> mapping : mappings){
-            System.out.println(mapping.getKey() + " ==> " + mapping.getValue());
-        }*/
 
         Comparator<Map.Entry<String, Integer>> valueComparator = new Comparator<Map.Entry<String,Integer>>() {
 
@@ -172,10 +162,13 @@ public class TricountActivity  extends AppCompatActivity {
 
         passedMap.clear();
         for(Map.Entry<String, Integer> mapping : entrySetSortedByValue){
-            Log.d(">>>>>>>>><",mapping.getKey() + " ==> " + mapping.getValue());
             passedMap.put(mapping.getKey(),mapping.getValue());
         }
 
         return passedMap;
+    }
+
+    public void updateUI(String affichageTricount){
+        this.listeTricount.setText(affichageTricount);
     }
 }
