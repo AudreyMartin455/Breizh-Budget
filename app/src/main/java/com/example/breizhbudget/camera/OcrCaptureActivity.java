@@ -52,6 +52,11 @@ import com.google.android.material.snackbar.Snackbar;
 import java.io.IOException;
 import java.util.Locale;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static java.lang.Integer.parseInt;
+
 /**
  * Activity for the Ocr Detecting app.  This app detects text and displays the value with the
  * rear facing camera. During detection overlay graphics are drawn to indicate the position,
@@ -360,17 +365,19 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         if (graphic != null) {
             text = graphic.getTextBlock();
             if (text != null && text.getValue() != null) {
-                Log.d(TAG, "text data is being spoken! " + text.getValue());
-               //TODO Essayer le traitement de texte ici
                 try{
+                    String str = text.getValue();
+                    Pattern pattern = Pattern.compile("[0-9]+[,|.][0-9]{2}");
+                    Matcher matcher = pattern.matcher(str);
+                    int valeurLu = 0;
+                    if (matcher.find())
+                    {
+                        valeurLu = Integer.parseInt(matcher.group());
+                        String txt = "Text trouvé = " +valeurLu;
+                        Toast.makeText(getApplicationContext(), txt, Toast.LENGTH_SHORT).show();
 
-                    /*
-                    String str = "qwerty1qwerty2";
-                    str = str.replaceAll("[^0-9]+", " ");
-                    System.out.println(Arrays.asList(str.trim().split(" ")));
-                     */
-                    //Integer.parseInt( text.getValue())
-                    ModelTransaction transaction = new ModelTransaction(budget.getId(),"Scanner",false,200);
+                    }
+                    ModelTransaction transaction = new ModelTransaction(budget.getId(),"Scanner",false,valeurLu);
                     this.repository.addTransaction(this,transaction);
                 }catch(NumberFormatException nfe){
                     Log.d(TAG,"Could not parse " + nfe);

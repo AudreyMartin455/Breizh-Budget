@@ -6,7 +6,7 @@ public class ModelTransaction {
     private String idBudget;
     private String description;
     private boolean sign;
-    private long montantTransaction;
+    private double montantTransaction;
 
     public ModelTransaction(){}
 
@@ -14,13 +14,13 @@ public class ModelTransaction {
         this.idTransaction = idTrans;
     }
 
-    public ModelTransaction(String desc, boolean sign, long montant){
+    public ModelTransaction(String desc, boolean sign, double montant){
         this.description = desc;
         this.sign = sign;
         this.montantTransaction = montant;
     }
 
-    public ModelTransaction(String id, String idBudget, String desc, boolean sign, long montant){
+    public ModelTransaction(String id, String idBudget, String desc, boolean sign, double montant){
         this.idTransaction = id;
         this.idBudget = idBudget;
         this.description = desc;
@@ -28,7 +28,7 @@ public class ModelTransaction {
         this.montantTransaction = montant;
     }
 
-    public ModelTransaction(String idBudget, String desc, boolean sign, long montant){
+    public ModelTransaction(String idBudget, String desc, boolean sign, double montant){
         this.idBudget = idBudget;
         this.description = desc;
         this.sign = sign;
@@ -59,11 +59,11 @@ public class ModelTransaction {
         this.sign = sign;
     }
 
-    public long getMontantTransaction() {
+    public double getMontantTransaction() {
         return montantTransaction;
     }
 
-    public void setMontantTransaction(long montantTransaction) {
+    public void setMontantTransaction(double montantTransaction) {
         this.montantTransaction = montantTransaction;
     }
 

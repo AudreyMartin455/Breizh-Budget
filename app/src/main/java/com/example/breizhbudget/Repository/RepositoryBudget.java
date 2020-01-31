@@ -66,7 +66,7 @@ public class RepositoryBudget {
 
 
                         for (DocumentSnapshot doc : task.getResult()) {
-                            ModelBudgets modelBudgets = new ModelBudgets(doc.getId(),doc.getString("name"), doc.getLong("montant"));
+                            ModelBudgets modelBudgets = new ModelBudgets(doc.getId(),doc.getString("name"), doc.getDouble("montant"));
                             budgetsList.add(modelBudgets);
 
                         }
@@ -167,7 +167,7 @@ public class RepositoryBudget {
                                         doc.getString(doc.getId()),
                                         doc.getString("description"),
                                         doc.getBoolean("sign"),
-                                        doc.getLong("montantTransaction")
+                                        doc.getDouble("montantTransaction")
                                 );
                                 transList.add(modelTrans);
                             }

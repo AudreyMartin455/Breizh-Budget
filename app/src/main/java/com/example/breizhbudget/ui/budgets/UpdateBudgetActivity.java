@@ -102,7 +102,7 @@ public class UpdateBudgetActivity extends AppCompatActivity {
 
     @OnClick(R.id.ajouter)
     public void updateBudget(){
-        this.budget.setMontant(Long.parseLong(montant.getText().toString()));
+        this.budget.setMontant(Double.parseDouble(montant.getText().toString()));
         this.budget.setName(name.getText().toString());
 
         this.repository.updateBudget(this, this.budget);

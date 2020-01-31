@@ -6,7 +6,7 @@ public class Participant {
 
 
     String Name, Description;
-    int Montant;
+    double Montant;
 
     public Participant() {
     }
@@ -16,7 +16,7 @@ public class Participant {
         this.namedoc = namedoc;
     }
 
-    public Participant(String name, String description, int montant) {
+    public Participant(String name, String description, double montant) {
         Name = name;
         Description = description;
         Montant = montant;
@@ -30,7 +30,7 @@ public class Participant {
         Description = description;
     }
 
-    public void setMontant(int montant) {
+    public void setMontant(double montant) {
         Montant = montant;
     }
 
@@ -42,7 +42,7 @@ public class Participant {
         return Description;
     }
 
-    public int getMontant() {
+    public double getMontant() {
         return Montant;
     }
 

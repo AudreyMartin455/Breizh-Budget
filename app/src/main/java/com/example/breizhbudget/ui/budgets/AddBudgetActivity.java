@@ -111,7 +111,7 @@ public class AddBudgetActivity extends AppCompatActivity implements Validator.Va
 
     @Override
     public void onValidationSucceeded() {
-        ModelBudgets budget = new ModelBudgets(name.getText().toString(),Long.parseLong(montant.getText().toString()));
+        ModelBudgets budget = new ModelBudgets(name.getText().toString(),Double.parseDouble(montant.getText().toString()));
 
         repository.addBudget(budget, this);
 

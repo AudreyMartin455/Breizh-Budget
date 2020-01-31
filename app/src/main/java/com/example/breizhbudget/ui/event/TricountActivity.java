@@ -118,27 +118,27 @@ public class TricountActivity  extends AppCompatActivity {
 
            String result = "";
            List<String> peoples = new ArrayList<>();
-           List<Integer> valuesPaid = this.getMontants(participantsList);
-           HashMap<String,Integer> peopleValues = this.toHashMap(participantsList);
+           List<Double> valuesPaid = this.getMontants(participantsList);
+           HashMap<String,Double> peopleValues = this.toHashMap(participantsList);
 
-           int sum = this.sum(valuesPaid);
-           int mean = sum / peopleValues.size();
+           double sum = this.sum(valuesPaid);
+           double mean = sum / peopleValues.size();
 
            peopleValues = this.sortHashMapByValues(peopleValues);
 
 
            for (Map.Entry mapentry : peopleValues.entrySet()) {
                peoples.add(mapentry.getKey().toString());
-               peopleValues.replace(mapentry.getKey().toString(), (Integer) mapentry.getValue()-mean);
+               peopleValues.replace(mapentry.getKey().toString(), (Double) mapentry.getValue()-mean);
            }
 
            int i = 0;
            int j = peopleValues.size()-1;
-           int debt;
+           double debt;
 
            while (i < j){
-               int valuei = peopleValues.get(peoples.get(i));
-               int valuej = peopleValues.get(peoples.get(j));
+               double valuei = peopleValues.get(peoples.get(i));
+               double valuej = peopleValues.get(peoples.get(j));
                debt = Math.min(-(valuei),valuej);
                valuei += debt;
                valuej -= debt;
@@ -164,8 +164,8 @@ public class TricountActivity  extends AppCompatActivity {
 
     }
 
-    public HashMap<String,Integer> toHashMap(List<Participant> participants){
-        HashMap<String,Integer> peopleValues = new HashMap<>();
+    public HashMap<String,Double> toHashMap(List<Participant> participants){
+        HashMap<String,Double> peopleValues = new HashMap<>();
 
         for(Participant p: participants){
             peopleValues.put(p.getName(),p.getMontant());
@@ -175,8 +175,8 @@ public class TricountActivity  extends AppCompatActivity {
     }
 
 
-    public List<Integer> getMontants(List<Participant> participantsList){
-        List<Integer> montants = new ArrayList<>();
+    public List<Double> getMontants(List<Participant> participantsList){
+        List<Double> montants = new ArrayList<>();
         for(Participant p : participantsList){
             montants.add(p.getMontant());
         }
@@ -184,47 +184,47 @@ public class TricountActivity  extends AppCompatActivity {
         return montants;
     }
 
-    public int sum(List<Integer> values){
-        int sum = 0;
-        for(Integer value : values){
+    public double sum(List<Double> values){
+        double sum = 0;
+        for(Double value : values){
             sum = sum + value;
         }
         return sum;
     }
 
-    public HashMap<String,Integer> sortHashMapByValues(HashMap<String, Integer> passedMap) {
-        TreeMap<String, Integer> sorted = new TreeMap<>(passedMap);
-        Set<Map.Entry<String, Integer>> mappings = sorted.entrySet();
+    public HashMap<String,Double> sortHashMapByValues(HashMap<String, Double> passedMap) {
+        TreeMap<String, Double> sorted = new TreeMap<>(passedMap);
+        Set<Map.Entry<String, Double>> mappings = sorted.entrySet();
 
-        Set<Map.Entry<String, Integer>> entries = passedMap.entrySet();
+        Set<Map.Entry<String, Double>> entries = passedMap.entrySet();
 
-        Comparator<Map.Entry<String, Integer>> valueComparator = new Comparator<Map.Entry<String,Integer>>() {
+        Comparator<Map.Entry<String, Double>> valueComparator = new Comparator<Map.Entry<String,Double>>() {
 
             @Override
-            public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
-                Integer v1 = e1.getValue();
-                Integer v2 = e2.getValue();
+            public int compare(Map.Entry<String, Double> e1, Map.Entry<String, Double> e2) {
+                Double v1 = e1.getValue();
+                Double v2 = e2.getValue();
                 return v1.compareTo(v2);
             }
         };
 
         // Sort method needs a List, so let's first convert Set to List in Java
-        List<Map.Entry<String, Integer>> listOfEntries = new ArrayList<Map.Entry<String, Integer>>(entries);
+        List<Map.Entry<String, Double>> listOfEntries = new ArrayList<Map.Entry<String, Double>>(entries);
 
         // sorting HashMap by values using comparator
         Collections.sort(listOfEntries, valueComparator);
 
-        LinkedHashMap<String, Integer> sortedByValue = new LinkedHashMap<String, Integer>(listOfEntries.size());
+        LinkedHashMap<String, Double> sortedByValue = new LinkedHashMap<String, Double>(listOfEntries.size());
 
         // copying entries from List to Map
-        for(Map.Entry<String, Integer> entry : listOfEntries){
+        for(Map.Entry<String, Double> entry : listOfEntries){
             sortedByValue.put(entry.getKey(), entry.getValue());
         }
 
-        Set<Map.Entry<String, Integer>> entrySetSortedByValue = sortedByValue.entrySet();
+        Set<Map.Entry<String, Double>> entrySetSortedByValue = sortedByValue.entrySet();
 
         passedMap.clear();
-        for(Map.Entry<String, Integer> mapping : entrySetSortedByValue){
+        for(Map.Entry<String, Double> mapping : entrySetSortedByValue){
             passedMap.put(mapping.getKey(),mapping.getValue());
         }
 

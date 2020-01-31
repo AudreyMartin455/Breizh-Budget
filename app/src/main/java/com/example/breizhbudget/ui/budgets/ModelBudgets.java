@@ -6,7 +6,7 @@ import android.os.Parcelable;
 public class ModelBudgets implements Parcelable {
     private String id;
     private String name;
-    private long montant;
+    private Double montant;
 
     public ModelBudgets(){}
 
@@ -14,12 +14,12 @@ public class ModelBudgets implements Parcelable {
         this.id = id;
     }
 
-    public ModelBudgets(String name, long montant){
+    public ModelBudgets(String name, Double montant){
         this.name = name;
         this.montant = montant;
     }
 
-    public ModelBudgets(String id, String name, long montant) {
+    public ModelBudgets(String id, String name, Double montant) {
         this.name = name;
         this.montant = montant;
         this.id = id;
@@ -28,7 +28,7 @@ public class ModelBudgets implements Parcelable {
     protected ModelBudgets(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
-        this.montant = in.readLong();
+        this.montant = in.readDouble();
     }
 
 
@@ -38,7 +38,7 @@ public class ModelBudgets implements Parcelable {
         return name;
     }
 
-    public long getMontant() {
+    public Double getMontant() {
         return montant;
     }
 
@@ -48,7 +48,7 @@ public class ModelBudgets implements Parcelable {
         this.name = name;
     }
 
-    public void setMontant(long montant) {
+    public void setMontant(Double montant) {
         this.montant = montant;
     }
 
@@ -61,7 +61,7 @@ public class ModelBudgets implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(name);
-        dest.writeLong(montant);
+        dest.writeDouble(montant);
     }
 
     public static final Creator<ModelBudgets> CREATOR = new Creator<ModelBudgets>() {

@@ -144,7 +144,7 @@ public class AddRowActivity extends AppCompatActivity implements Validator.Valid
                 this.budget.getId(),
                 this.description.getText().toString(),
                 this.sign,
-                Long.parseLong(montant.getText().toString())
+                Double.parseDouble(montant.getText().toString())
         );
 
         repository.addTransaction(this, transaction);

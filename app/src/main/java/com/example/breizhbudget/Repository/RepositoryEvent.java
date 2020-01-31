@@ -176,8 +176,8 @@ public class RepositoryEvent {
 
                         modelEvents = task.getResult().toObjects(ModelEvent.class);
 
-                        Hashtable<String, Integer> tableParticipant = new Hashtable<String, Integer>();
-                        int montantParticipant = 0;
+                        Hashtable<String, Double> tableParticipant = new Hashtable<String, Double>();
+                        double montantParticipant = 0.0;
                         ArrayList<Participant> participantMontantList = new ArrayList<Participant>();
 
                         //On récupère l'event
@@ -190,7 +190,7 @@ public class RepositoryEvent {
                                         montantParticipant = tableParticipant.get(part.getName());
                                     }
                                     tableParticipant.put(part.getName(), montantParticipant + part.getMontant());
-                                    montantParticipant = 0;
+                                    montantParticipant = 0.0;
                                 }
 
 

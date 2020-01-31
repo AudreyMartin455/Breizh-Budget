@@ -51,7 +51,7 @@ public class ParticipantActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String Name= mNameParticipant.getText().toString().trim();
-                int Montant =Integer.parseInt(mMontant.getText().toString().trim());
+                Double Montant =Double.parseDouble(mMontant.getText().toString().trim());
                 String Description = mDescription.getText().toString().trim();
                 Participant participant = new Participant(Name,Description,Montant);
                 Intent intent = getIntent();
