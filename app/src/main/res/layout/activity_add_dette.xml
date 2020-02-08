@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize">
+
+
+    <TextView
+        android:id="@+id/titre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Ajout d'une dette ou d'un prêt"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button" />
+
+    <TableLayout
+        android:id="@+id/events"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:gravity="center_horizontal"
+        android:stretchColumns="*"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titre"
+        app:layout_constraintVertical_bias="0.039">
+
+        <TableRow>
+
+            <RadioGroup
+                android:id="@+id/sign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/button">
+
+                <RadioButton
+                    android:id="@+id/dette"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="50dp"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="Dette" />
+
+                <RadioButton
+                    android:id="@+id/pret"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="Prêt" />
+            </RadioGroup>
+
+
+        </TableRow>
+
+
+        <TableRow
+
+            android:id="@+id/Row1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <!-- first element of the row-->
+
+            <EditText
+                android:id="@+id/montantDetteAdd"
+                android:inputType="numberDecimal|number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Montant"/>
+
+
+        </TableRow>
+
+        <TableRow
+
+            android:id="@+id/Row2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <!-- first element of the row-->
+
+            <EditText
+                android:id="@+id/descDette"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Description:" />
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/RowBeneficiaire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <!-- first element of the row-->
+
+            <EditText
+                android:id="@+id/beneficiaire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Beneficiare:" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/confirmRowDette"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:text="Ajouter dette/prêt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
