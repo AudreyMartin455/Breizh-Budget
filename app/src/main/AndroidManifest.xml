@@ -13,6 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.dette.AddDetteActivity"
+            android:parentActivityName=".ui.dette.DettePretActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.dette.DettePretActivity" />
+        </activity>
+        <activity
+            android:name=".ui.dette.DettePretActivity"
+            android:parentActivityName=".Accueil">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Accueil" />
+        </activity>
+        <activity
             android:name=".ui.event.ComptageActivity"
             android:parentActivityName=".ui.event.ViewEvent">
             <meta-data
@@ -97,18 +111,19 @@
             android:parentActivityName=".ui.budgets.OneBudgetActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.budgets.OneBudgetActivity"/>
+                android:value=".ui.budgets.OneBudgetActivity" />
         </activity>
         <activity
             android:name=".camera.OcrCaptureActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".ui.budgets.UpdateBudgetActivity"
             android:label="@string/app_name"
             android:parentActivityName=".ui.budgets.OneBudgetActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.budgets.OneBudgetActivity"/></activity>
+                android:value=".ui.budgets.OneBudgetActivity" />
+        </activity>
     </application>
 
 </manifest>
