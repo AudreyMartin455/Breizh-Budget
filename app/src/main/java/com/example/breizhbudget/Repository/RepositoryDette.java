@@ -29,31 +29,5 @@ public class RepositoryDette {
         }
         return repository;
     }
-
-    /**
-     * Retourne toutes les dette et tous les préts
-     * @param context
-     * @return Liste des dettes et prêts de la BD
-     */
-    public List<ModelDette> getAllDette(Context context) {
-        List<ModelDette> dettesListe = new ArrayList<ModelDette>();
-        ProgressDialog progressDialog = new ProgressDialog(context);
-
-        progressDialog.setTitle("loading data ....");
-        progressDialog.show();
-
-        db.collection("Dettes")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        progressDialog.dismiss();
-
-                        for (DocumentSnapshot doc : task.getResult()) {
-                            ModelDette modelDette = new ModelDette(doc.getId(), doc.getString("beneficiaire"), doc.getString("desctiption"), doc.getDouble("montant"));
-                            dettesListe.add(modelDette);
-                        }
-                    }
-                })
-    }
+    
 }
