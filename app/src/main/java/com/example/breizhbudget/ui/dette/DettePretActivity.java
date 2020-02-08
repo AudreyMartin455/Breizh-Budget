@@ -3,9 +3,14 @@ package com.example.breizhbudget.ui.dette;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +20,10 @@ import android.widget.Toast;
 import com.example.breizhbudget.R;
 import com.example.breizhbudget.Repository.RepositoryDette;
 import com.example.breizhbudget.ui.budgets.BudgetsActivity;
+import com.example.breizhbudget.ui.budgets.ModelBudgets;
 import com.example.breizhbudget.ui.event.EventActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +31,13 @@ import butterknife.ButterKnife;
 public class DettePretActivity extends AppCompatActivity {
 
     @BindView(R.id.button_add_dette) Button buttonAddDette;
+    @BindView(R.id.recyclerViewDette) RecyclerView recyclerDette;
+
+    private DetteAdapter detteAdapter;
+    private RecyclerView.LayoutManager detteLayoutManager;
     private RepositoryDette repository;
+
+    private List<ModelDette> listDette;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +54,13 @@ public class DettePretActivity extends AppCompatActivity {
             }
         });
 
-        /*this.repository = RepositoryDette.getInstance();
+        this.repository = RepositoryDette.getInstance();
 
-        recycler_budgets.setHasFixedSize(true);
-        budgetLayoutManager = new LinearLayoutManager(this);
-        recycler_budgets.setLayoutManager(budgetLayoutManager);
+        recyclerDette.setHasFixedSize(true);
+        detteLayoutManager = new LinearLayoutManager(this);
+        recyclerDette.setLayoutManager(detteLayoutManager);
 
-        repository.getAllBudget(this);*/
+        repository.getAllDette(this);
     }
 
     /**
@@ -102,5 +116,28 @@ public class DettePretActivity extends AppCompatActivity {
                 return true;
         }
         return false;
+    }
+
+    public void updateDettesUI(List<ModelDette> detteList) {
+        this.listDette = detteList;
+        this.detteAdapter = new DetteAdapter(DettePretActivity.this, detteList);
+        this.recyclerDette.setAdapter(detteAdapter);
+    }
+
+    public void deleteBudget(int position){
+        Log.d(">>>>>", "DettePretActivity" + position);
+        ModelDette dette = new ModelDette(this.listDette.get(position).getId());
+
+        Context context  = this;
+        new AlertDialog.Builder(this)
+                .setTitle("Supprimer une dette ou un prêts")
+                .setMessage("Voulez-vous vraiment supprimer cet item ?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        repository.deleteDette(dette, context);
+                    }})
+                .setNegativeButton("Non", null).show();
     }
 }

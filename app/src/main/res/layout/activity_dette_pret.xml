@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewDette"
         android:layout_width="397dp"
         android:layout_height="483dp"
         app:layout_constraintBottom_toBottomOf="parent"
