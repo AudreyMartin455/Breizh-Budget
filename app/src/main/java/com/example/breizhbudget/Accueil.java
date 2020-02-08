@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.breizhbudget.ui.budgets.BudgetsActivity;
+import com.example.breizhbudget.ui.dette.DettePretActivity;
 import com.example.breizhbudget.ui.event.EventActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,8 +22,9 @@ import butterknife.ButterKnife;
 public class Accueil extends AppCompatActivity {
 
 
-    @BindView(R.id.addRow) Button buttonEvent;
-    @BindView(R.id.button) Button buttonBudget;
+    @BindView(R.id.buttonEvent) Button buttonEvent;
+    @BindView(R.id.buttonBudget) Button buttonBudget;
+    @BindView(R.id.buttonDette) Button buttonDette;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,14 @@ public class Accueil extends AppCompatActivity {
 
             public void onClick(View V){
                 Intent intent = new Intent(Accueil.this, BudgetsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonDette.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Accueil.this, DettePretActivity.class);
                 startActivity(intent);
             }
         });
