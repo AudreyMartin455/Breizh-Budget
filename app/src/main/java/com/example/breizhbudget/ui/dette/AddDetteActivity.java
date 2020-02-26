@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AddDetteActivity extends AppCompatActivity {
+public class AddDetteActivity extends AppCompatActivity implements Validator.ValidationListener{
 
     @NotEmpty
     @BindView(R.id.montantDetteAdd) EditText montant;
@@ -52,7 +52,7 @@ public class AddDetteActivity extends AppCompatActivity {
         this.repository = RepositoryDette.getInstance();
 
         this.validator = new Validator(this);
-        // this.validator.setValidationListener(this);
+        this.validator.setValidationListener(this);
 
     }
 
@@ -119,21 +119,8 @@ public class AddDetteActivity extends AppCompatActivity {
     @OnClick(R.id.pret)
     public void setPret() { this.isDette = false; }
 
+
     @OnClick(R.id.confirmRowDette)
-    public void addDette() {
-        ModelDette newDette = new ModelDette(
-                this.beneficiaire.getText().toString(),
-                this.description.getText().toString(),
-                Double.parseDouble(montant.getText().toString()),
-                this.isDette
-        );
-        repository.addDette(newDette, this);
-
-        Intent intent = new Intent(AddDetteActivity.this, DettePretActivity.class);
-        startActivity(intent);
-    }
-
-    /*@OnClick(R.id.confirmRowDette)
     public void addDette() {this.validator.validate();}
 
 
@@ -162,5 +149,5 @@ public class AddDetteActivity extends AppCompatActivity {
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
         }
-    }*/
+    }
 }
