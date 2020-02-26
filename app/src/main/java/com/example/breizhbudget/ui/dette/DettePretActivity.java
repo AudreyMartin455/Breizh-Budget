@@ -124,7 +124,7 @@ public class DettePretActivity extends AppCompatActivity {
         this.recyclerDette.setAdapter(detteAdapter);
     }
 
-    public void deleteBudget(int position){
+    public void deleteDette(int position){
         Log.d(">>>>>", "DettePretActivity" + position);
         ModelDette dette = new ModelDette(this.listDette.get(position).getId());
 

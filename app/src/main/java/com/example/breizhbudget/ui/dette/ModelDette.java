@@ -21,6 +21,13 @@ public class ModelDette {
         this.sign = sign;
     }
 
+    public ModelDette(String beneficiaire, String description, Double montant, Boolean sign) {
+        this.beneficiaire = beneficiaire;
+        this.description = description;
+        this.montant = montant;
+        this.sign = sign;
+    }
+
     public String getId() {
         return id;
     }

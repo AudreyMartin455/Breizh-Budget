@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -93,5 +94,25 @@ public class RepositoryDette {
                 });
 
     }
-    
+
+    public void addDette(ModelDette newDette, Context context) {
+        db.collection("Budgets")
+                .add(newDette)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(context,"Dette created",Toast.LENGTH_SHORT).show();
+                        Log.d("Success : ", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Toast.makeText(context,"Error, Dette not created",Toast.LENGTH_SHORT).show();
+                        Log.w("Failure : ", "Error writing document", e);
+                    }
+                });
+    }
+
 }
