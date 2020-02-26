@@ -365,23 +365,24 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         if (graphic != null) {
             text = graphic.getTextBlock();
             if (text != null && text.getValue() != null) {
-                try{
-                    String str = text.getValue();
-                    Pattern pattern = Pattern.compile("[0-9]+[,|.][0-9]{2}");
-                    Matcher matcher = pattern.matcher(str);
-                    int valeurLu = 0;
-                    if (matcher.find())
-                    {
-                        valeurLu = Integer.parseInt(matcher.group());
-                        String txt = "Text trouvé = " +valeurLu;
-                        Toast.makeText(getApplicationContext(), txt, Toast.LENGTH_SHORT).show();
+                String str = text.getValue();
+                Pattern pattern = Pattern.compile("[0-9]+[,|.][0-9]{2}");
+                Matcher matcher = pattern.matcher(str);
+                double valeurLu = 0.0;
+                if (matcher.find()) {
+                    String matcheValue = matcher.group();
+                    matcheValue = matcheValue.replace(',', '.');
+                    valeurLu = Double.parseDouble(matcheValue);
+                    String txt = "Text trouvé = " + valeurLu;
+                    Toast.makeText(getApplicationContext(), txt, Toast.LENGTH_SHORT).show();
 
-                    }
-                    ModelTransaction transaction = new ModelTransaction(budget.getId(),"Scanner",false,valeurLu);
-                    this.repository.addTransaction(this,transaction);
-                }catch(NumberFormatException nfe){
-                    Log.d(TAG,"Could not parse " + nfe);
                 }
+                else {
+                    Toast.makeText(getApplicationContext(), "Pas de correspondance", Toast.LENGTH_SHORT).show();
+                }
+                ModelTransaction transaction = new ModelTransaction(budget.getId(),"Scanner",false,valeurLu);
+                this.repository.addTransaction(this,transaction);
+
 
             }
             else {
