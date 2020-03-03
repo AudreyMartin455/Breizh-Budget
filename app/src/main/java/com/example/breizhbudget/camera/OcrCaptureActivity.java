@@ -375,13 +375,13 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                     valeurLu = Double.parseDouble(matcheValue);
                     String txt = "Text trouvé = " + valeurLu;
                     Toast.makeText(getApplicationContext(), txt, Toast.LENGTH_SHORT).show();
+                    ModelTransaction transaction = new ModelTransaction(budget.getId(),"Scanner",false,valeurLu);
+                    this.repository.addTransaction(this,transaction);
 
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Pas de correspondance", Toast.LENGTH_SHORT).show();
                 }
-                ModelTransaction transaction = new ModelTransaction(budget.getId(),"Scanner",false,valeurLu);
-                this.repository.addTransaction(this,transaction);
 
 
             }
