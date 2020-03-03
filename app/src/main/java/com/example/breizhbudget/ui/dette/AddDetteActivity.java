@@ -133,6 +133,8 @@ public class AddDetteActivity extends AppCompatActivity implements Validator.Val
                 this.isDette
         );
         repository.addDette(newDette, this);
+        Intent intent = new Intent(AddDetteActivity.this, DettePretActivity.class);
+        startActivity(intent);
     }
 
 

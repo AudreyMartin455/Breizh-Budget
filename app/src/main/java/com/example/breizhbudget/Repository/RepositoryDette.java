@@ -96,7 +96,7 @@ public class RepositoryDette {
     }
 
     public void addDette(ModelDette newDette, Context context) {
-        db.collection("Budgets")
+        db.collection("Dettes")
                 .add(newDette)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
